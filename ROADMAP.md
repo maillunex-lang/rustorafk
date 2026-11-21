@@ -21,7 +21,8 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
   - [ ] Restore GDD-01 Dialogue Manager/Inventory in full integrated project
   - [ ] LimboAI v1.8.1 GDExtension binaries and behavior trees, Android test
   - [ ] Phantom Camera v0.11.0.3 camera integration and portrait test
-  - [ ] Ten Meshy humanoids with attacks, animation retargeting, FPS/RAM profiling
+  - [ ] Ten Meshy humanoids with attacks, animation retargeting, FPS/RAM profiling (one existing 12 MB Meshy animated GLB imported successfully in isolated VPS workspace; not yet integrated into APK)
+  - [x] Godot 4.7.2 headless automatic battle test passed (5v5, HP, auto attacks, manual ultimate, win at 22.1s); 28 MB signed ARM64 battle preview APK built, not yet device-tested
   - [ ] Android owner smoke test and explicit GDD-02 acceptance
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
