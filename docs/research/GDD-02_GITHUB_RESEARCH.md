@@ -32,3 +32,8 @@ Avoid vendor assets and character designs from existing commercial games.
 ## Owner technology approval required
 Approve/reject individually AI-TECH-001, MOVE-TECH-001, SKILL-TECH-001, CAM-TECH-001, ANIM-TECH-001, FORM-TECH-001.
 No GDD-02 implementation before explicit approval.
+
+## Owner approval and verification update (2026-11-22)
+Approved: AI-TECH-001 ADAPT LimboAI, MOVE-TECH-001 ADOPT NavigationAgent3D, SKILL-TECH-001 BUILD, CAM-TECH-001 ADAPT Phantom Camera, ANIM-TECH-001 ADOPT built-in humanoid animation, FORM-TECH-001 BUILD.
+Upstream version candidates: LimboAI v1.8.1 (release includes Godot 4.7.2 Android library and GDExtension 4.6 package; select GDExtension for stock Godot, avoid custom engine module without matching templates). Phantom Camera v0.11.0.3 (MIT, Godot 4.4+, Godot 4.7.1 autoload fix, upstream marks unstable). Full SHA, binary checksums and actual Android arm64 runtime remain integration gates.
+Lunex: Godot binary /opt/game-tools/godot/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64 reports 4.7.2. Isolated checkout /srv/rustorafk-gdd02/source. Baseline test passes but checkout does NOT contain previously vendored GDD-01 addons; startup reports missing dialogue_manager autoload. New standalone GDD-02 domain test passes in headless Godot, but plugin integration and Android export are NOT done. Do not treat test as full PoC acceptance.
