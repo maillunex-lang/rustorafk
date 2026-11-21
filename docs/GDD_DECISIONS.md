@@ -19,4 +19,10 @@
 - 2D hero splash art and 3D battle models are distinct assets requiring visual consistency.
 
 ## Implementation gate
-GDD-01 decisions approved. GitHub research proposals are NOT approved for adoption. No external components have been integrated. Await owner approval of technology choices before coding.
+GDD-01 technology selections approved 2026-11-22:
+- TECH-001 ADOPT: nathanhoad/godot_dialogue_manager (conditional on version/license/Android verification).
+- TECH-002 ADAPT: expressobits/inventory-system (conditional on GDExtension/Android binary verification).
+- TECH-003 BUILD: custom authoritative 5v5 combat, roster, economy, arena and idle logic.
+- GLoot is REFERENCE only, not selected for integration.
+- Scope: approved technical PoC only. GDD-02 is BLOCKED pending owner's acceptance of GDD-01 PoC.
+- No claim of Android compatibility until an APK is built and tested.
