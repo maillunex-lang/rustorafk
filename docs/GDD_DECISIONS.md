@@ -33,3 +33,12 @@ GDD-01 technology selections approved 2026-11-22:
 - This is functional acceptance, not evidence of measured FPS/RAM or full 10-character 3D performance.
 - Deferred: FPS/RAM profiling, prolonged stability, ten animated humanoids simultaneously.
 - Do not mark these deferred checks as passed.
+
+## GDD-02 - APPROVED (2026-11-22)
+- COMBAT-001 B: auto real-time 5v5 battle with manual ultimate activation.
+- ROLE-001 C: tank, warrior, assassin, marksman, mage, support/healer.
+- SKILL-001 B: 3 ordinary abilities plus 1 ultimate per hero.
+- ULT-001 A: ultimate effects occur directly on the arena; no separate cinematic.
+- PACE-001 B: target battle length 30-60 seconds.
+- FORM-001 B: freely arrange five pre-battle positions.
+- GDD-02 technology candidates are proposals only, NOT approved or installed.
