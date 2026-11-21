@@ -1,6 +1,6 @@
 # ROADMAP - RuStore AFK
 
-Status: GDD-01 ACCEPTED by owner on 2026-11-22. GDD-02 design OPEN, no GDD-02 choices or technologies approved.
+Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated PoC underway; GDD-03 blocked until owner acceptance.
 
 - [x] INIT-001: repository and approval workflow initialized
 - [x] GDD-01: setting, art style, orientation, battle concept, roster, no base, story
@@ -14,7 +14,7 @@ Status: GDD-01 ACCEPTED by owner on 2026-11-22. GDD-02 design OPEN, no GDD-02 ch
   - [x] Owner acceptance (functional PoC)
 - [x] GDD-02: combat, roles, skills, battle pacing (owner approved gameplay decisions)
 - [x] GDD-02-R: GitHub candidate research and preliminary licensing/compatibility review
-- [ ] GDD-02-T: owner separately approves ADOPT/ADAPT/BUILD technology choices
+- [x] GDD-02-T: owner approved AI adapt, movement adopt, skills build, camera adapt, animation adopt, formation build
 - [ ] GDD-02-P: only approved integrations and Godot 4.7.2/Android PoC
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
