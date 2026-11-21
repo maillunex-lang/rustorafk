@@ -24,5 +24,12 @@ GDD-01 technology selections approved 2026-11-22:
 - TECH-002 ADAPT: expressobits/inventory-system (conditional on GDExtension/Android binary verification).
 - TECH-003 BUILD: custom authoritative 5v5 combat, roster, economy, arena and idle logic.
 - GLoot is REFERENCE only, not selected for integration.
-- Scope: approved technical PoC only. GDD-02 is BLOCKED pending owner's acceptance of GDD-01 PoC.
+- Scope: approved technical PoC only. GDD-01 PoC ACCEPTED by owner on 2026-11-22 after Android screenshots and confirmation of smooth Meshy animation. GDD-02 design is open, but no GDD-02 choices or technology are approved.
 - No claim of Android compatibility until an APK is built and tested.
+
+## GDD-01 acceptance evidence and deferred QA
+- Android device screenshots: app opens in portrait; Meshy humanoid renders; UI displays Dialogue Manager and Expresso OK; 5v5 turns progress from 0 to 17, survivors from 5:5 to 2:0.
+- Owner explicitly confirmed smooth character walking and accepted GDD-01.
+- This is functional acceptance, not evidence of measured FPS/RAM or full 10-character 3D performance.
+- Deferred: FPS/RAM profiling, prolonged stability, ten animated humanoids simultaneously.
+- Do not mark these deferred checks as passed.
