@@ -1,0 +1,9 @@
+[gd_resource type="InventoryDatabase" load_steps=2 format=3]
+
+[sub_resource type="ItemDefinition" id="seal"]
+id = "celestial_seal"
+name = "Небесная печать"
+max_stack = 10
+
+[resource]
+items = Array[ItemDefinition]([SubResource("seal")])
