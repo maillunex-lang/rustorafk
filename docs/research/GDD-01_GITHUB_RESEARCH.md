@@ -1,26 +1,21 @@
-# GDD-01 GitHub Research - proposals only
+# GDD-01 GitHub Research and technical verification
 
-Date: 2026-11-22. Status: awaiting owner technology approval. No dependencies installed or copied.
+Owner approval 2026-11-22: TECH-001 ADOPT Dialogue Manager; TECH-002 ADAPT Expresso Inventory System; TECH-003 BUILD own authoritative combat/economy; GLoot REFERENCE only.
 
-## Candidate shortlist
-1. ADOPT (conditional): https://github.com/nathanhoad/godot_dialogue_manager
-   - MIT; branching dialogue, localization. Current v4 targets Godot 4.6+.
-   - Check exact release/tag and transitive assets, verify Godot target, custom portrait UI and Android.
-2. ADAPT (conditional): https://github.com/expressobits/inventory-system
-   - MIT; modular item/inventory logic separate from UI; multiplayer-oriented examples.
-   - Adapt to server-authoritative item ownership and equipment; never trust client inventory changes.
-3. REFERENCE: https://github.com/peter-kish/gloot
-   - MIT; alternative universal inventory plugin for Godot 4.4+; evaluate versus expressobits, do not install both by default.
-4. BUILD: 5v5 moving combat and ability scheduling, character roster/gacha, authoritative arena, idle rewards, account economy, server security.
-   - Core game differentiators and anti-cheat need project-specific implementation.
-5. ADAPT/BUILD (research pending): Meshy humanoid GLB import, skeletal retargeting, animation state machine, Android LOD and VFX. Do not select an unverified repository.
+## Versions and licensing
+- Dialogue Manager 4: Godot 4.6+ per upstream README; MIT. Exact release tag not yet pinned, must resolve before vendor import. Older v3.10 targets Godot 4.4/4.5. https://github.com/nathanhoad/godot_dialogue_manager
+- Expresso Inventory System: upstream addon-2.13.0 at short commit 5d9a6f4 (release listing); MIT. Upstream main contains C++ GDExtension, godot-cpp submodule and compiled addon branch. Verify exact full SHA, license text, Android arm64-v8a binaries and Godot ABI before import. https://github.com/expressobits/inventory-system
+- GLoot: reference only, not installed. https://github.com/peter-kish/gloot
 
-## Licensing and safety gates
-- MIT code requires preservation of license/copyright notices; code license does not automatically cover third-party art.
-- Verify LICENSE at pinned commit/tag and dependency manifests before adoption.
-- Test import, animation retargeting, memory/frametime on target Android hardware.
-- External tools and licenses must be separately approved by owner.
-- Avoid copying art, character designs, logos or UI from commercial reference screenshots.
+## Critical integration risks
+- GDExtension Android arm64-v8a binary availability not yet verified. Do not ship desktop-only binaries.
+- Code MIT license does not imply unrestricted demo artwork rights. Upstream Expresso cites Kenney demo assets; review those separately.
+- Server must validate inventory ownership, currencies, drops, combat results; never trust client mutations.
+- Dialogue Manager v4 requires Godot >=4.6; engine target should be pinned before import.
+- Meshy GLB humanoid rig and animation retargeting need real sample asset and device test.
 
-## Approval request
-Owner must approve ADOPT Dialogue Manager, ADAPT expressobits inventory, GLoot as reference, and BUILD of authoritative game-specific systems (or request alternatives). Only then may PoC/integration begin.
+## Approved PoC boundary
+Minimal Godot portrait scene with simulated 5v5 positions and custom combat domain model; dialogue plugin smoke test; inventory plugin compatibility smoke test; Android debug export and FPS/memory profiling. No monetization, no production backend, no GDD-02 implementation.
+
+## Verification status
+Documentation/release metadata reviewed. No Android build or runtime test completed yet. Exact Dialogue Manager tag and Expresso full commit remain unverified. Do not label PoC passed.
