@@ -15,7 +15,14 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
 - [x] GDD-02: combat, roles, skills, battle pacing (owner approved gameplay decisions)
 - [x] GDD-02-R: GitHub candidate research and preliminary licensing/compatibility review
 - [x] GDD-02-T: owner approved AI adapt, movement adopt, skills build, camera adapt, animation adopt, formation build
-- [ ] GDD-02-P: only approved integrations and Godot 4.7.2/Android PoC
+- [ ] GDD-02-P: isolated PoC PARTIAL (custom 5v5 logic tested; 10 humanoid proxy scene headless startup tested; clean ARM64 APK exported and signature verified; Android device run pending; LimboAI/Phantom Camera runtime integration pending)
+  - [x] Built-in NavigationAgent3D present on all 10 proxy fighters; actual navigation movement pending
+  - [x] Manual ultimate and formation swap proof of concept
+  - [ ] Restore GDD-01 Dialogue Manager/Inventory in full integrated project
+  - [ ] LimboAI v1.8.1 GDExtension binaries and behavior trees, Android test
+  - [ ] Phantom Camera v0.11.0.3 camera integration and portrait test
+  - [ ] Ten Meshy humanoids with attacks, animation retargeting, FPS/RAM profiling
+  - [ ] Android owner smoke test and explicit GDD-02 acceptance
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
