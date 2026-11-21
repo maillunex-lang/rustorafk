@@ -41,4 +41,4 @@ GDD-01 technology selections approved 2026-11-22:
 - ULT-001 A: ultimate effects occur directly on the arena; no separate cinematic.
 - PACE-001 B: target battle length 30-60 seconds.
 - FORM-001 B: freely arrange five pre-battle positions.
-- GDD-02 technology candidates are proposals only, NOT approved or installed.
+- GDD-02 technology choices APPROVED 2026-11-22: AI-TECH-001 ADAPT LimboAI; MOVE-TECH-001 ADOPT NavigationAgent3D; SKILL-TECH-001 BUILD custom skills; CAM-TECH-001 ADAPT Phantom Camera; ANIM-TECH-001 ADOPT Godot humanoid retargeting/AnimationTree; FORM-TECH-001 BUILD formations and combat rules. Scope isolated PoC only. No GDD-03 before owner acceptance.
