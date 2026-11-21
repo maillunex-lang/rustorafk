@@ -1,17 +1,18 @@
 # ROADMAP - RuStore AFK
 
-Status: GDD-01 PoC built on Lunex. Android ARM64 package verified. On-device run and owner acceptance pending.
+Status: GDD-01 ACCEPTED by owner on 2026-11-22. GDD-02 design OPEN, no GDD-02 choices or technologies approved.
 
 - [x] INIT-001: repository and approval workflow initialized
 - [x] GDD-01: setting, art style, orientation, battle concept, roster, no base, story
 - [x] GDD-01-R: GitHub research and license classification documented
 - [x] GDD-01-T: owner approved TECH-001 ADOPT, TECH-002 ADAPT, TECH-003 BUILD
-- [ ] GDD-01-P: dependency verification, prototype, Android test and acceptance
+- [x] GDD-01-P: dependency verification, prototype, Android functional test and owner acceptance (performance deferred)
   - [x] Pin and verify approved dependencies, test the portrait PoC in Godot 4.7.2
   - [x] Import two Meshy GLBs, transfer their walk clips in Godot and export signed Android ARM64 debug APK
-  - [ ] Install and run on Android, verify touch and collect FPS/memory
-  - [ ] Owner acceptance
-- [ ] GDD-02: combat, roles, skills, battle pacing (wait for GDD-01 acceptance)
+  - [x] Owner screenshots confirm Android launch, character rendering, animation and 5v5 turn button; owner reports smooth walk
+  - [ ] Deferred: collect FPS/memory, long-run stability, ten simultaneous animated humanoids
+  - [x] Owner acceptance (functional PoC)
+- [ ] GDD-02: combat, roles, skills, battle pacing (design options presented; await owner selection, then GitHub research)
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
