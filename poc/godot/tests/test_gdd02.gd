@@ -1,0 +1,17 @@
+extends SceneTree
+const Combat = preload("res://gdd02_combat.gd")
+func _initialize() -> void:
+    var sim = Combat.new()
+    sim.setup()
+    assert(sim.allies.size() == 5 and sim.enemies.size() == 5)
+    assert(sim.ROLES.size() == 6 and sim.SKILLS_PER_HERO == 4)
+    assert(sim.move_formation(0,4))
+    assert(sim.allies[4]["role"] == "tank")
+    assert(not sim.move_formation(-1,4))
+    assert(sim.manual_ultimate(4))
+    assert(not sim.manual_ultimate(4))
+    assert(sim.ultimate_events == 1)
+    sim.step(100.0)
+    assert(sim.elapsed == 60.0)
+    print("PASS: GDD-02 isolated combat domain")
+    quit(0)
