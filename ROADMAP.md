@@ -12,7 +12,10 @@ Status: GDD-01 ACCEPTED by owner on 2026-11-22. GDD-02 design OPEN, no GDD-02 ch
   - [x] Owner screenshots confirm Android launch, character rendering, animation and 5v5 turn button; owner reports smooth walk
   - [ ] Deferred: collect FPS/memory, long-run stability, ten simultaneous animated humanoids
   - [x] Owner acceptance (functional PoC)
-- [ ] GDD-02: combat, roles, skills, battle pacing (design options presented; await owner selection, then GitHub research)
+- [x] GDD-02: combat, roles, skills, battle pacing (owner approved gameplay decisions)
+- [x] GDD-02-R: GitHub candidate research and preliminary licensing/compatibility review
+- [ ] GDD-02-T: owner separately approves ADOPT/ADAPT/BUILD technology choices
+- [ ] GDD-02-P: only approved integrations and Godot 4.7.2/Android PoC
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
