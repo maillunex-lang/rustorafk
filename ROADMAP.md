@@ -59,7 +59,8 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [ ] Round 7 design: remaining PvE tuning, progression and seasonal rules (owner choices pending; research after approval)
   - [x] Round 7 owner approved 2026-11-22: XP-CAP-001 C (full first-time/quest XP, diminishing repeats), SWEEP-REWARD-001 B (same loot tables and chances as normal), TOWER-TIE-001 B (floor then remaining HP then achievement time), SEASON-RESET-001 B (28-day rollover at 06:00 MSK)
   - [x] GitHub research after round 7: [GDD-04 round-7 candidates](docs/research/GDD-04_ROUND-7_GITHUB_CANDIDATES.md), GH04-053…061 proposed for separate owner technical approval
-  - [ ] Technical approval GH04-053…061 pending; do not integrate or advance GDD until owner approves
+  - [x] Technical approval 2026-11-22: GH04-053 STUDY, GH04-054 STUDY, GH04-055 STUDY, GH04-056 STUDY (unverified license, architecture only), GH04-057 ADAPT, GH04-058 BUILD, GH04-059 BUILD, GH04-060 BUILD, GH04-061 BUILD; implementation deferred
+  - [ ] Round 8 design: remaining PvE rule details (owner choices pending; research required after approval)
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset time/time zone, permanent and seasonal tower state, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
