@@ -237,3 +237,10 @@ Owner explicitly approved these planning dispositions:
 - GH04-069 BUILD: own server sweep eligibility on repeatable PvE stages after first victory, mode-specific attempts/energy and equal eligible reward chances.
 - GH04-070 BUILD: own world-boss contribution/active participation event ledger, anti-AFK checks and support/healing participation; exact thresholds deferred.
 - Research: docs/research/GDD-04_ROUND-8_GITHUB_CANDIDATES.md. Approval does not authorize implementation, integration, dependency installation, tests, server/game changes or APK builds. Next: GDD-04 round 9 design choices.
+
+## GDD-04 - ROUND 9 APPROVED (2026-11-22)
+- CHAPTER-GATE-001 B: chapter access uses a configurable per-chapter account-level requirement table, with gradually increasing requirements; previous chapter completion remains mandatory. Exact level thresholds and live-balance/versioning policy deferred.
+- DUNGEON-PRICE-001 B: three additional entries per resource dungeon type per day use a configurable escalating three-step price ladder (first cheapest, third most expensive); default ladder is shared across dungeon types. Currency and amounts deferred; three free entries per type unaffected.
+- BOSS-SUPPORT-001 C: world boss contribution accounts for damage, effective healing, beneficial buffs and prevented damage, with anti-exploit protections. Support/tank participation must not be unfairly excluded; exact coefficients, attribution windows and caps deferred.
+- SEASON-CLAIM-001 B: at season close server automatically grants earned tower seasonal rewards and notifies players, including offline players. Grants must be idempotent and auditable; delivery UI and retention policy deferred.
+- Next: GitHub research per mechanic and separate technical candidate approval. No implementation, integration, installs, tests, server/game changes or APK builds authorized.
