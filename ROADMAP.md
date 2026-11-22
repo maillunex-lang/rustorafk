@@ -22,8 +22,8 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
   - [x] Android snapshot: FPS 121 / min 98 / avg 120.0, Godot RAM 38.1 MB / peak 63.6 MB, VRAM 90.8 MB (one run/device; not full Android RSS)
   - [x] Fixed ultimate-damage test: checks delayed 65 damage and impact event; automated battle still passes at 46.9 seconds
   - [ ] Three ordinary skills implemented in combat domain and hero-1 test UI (guard shield, strike damage, recover heal), cooldowns and six-role numeric parameters; full class-specific AI skill use and balance still pending
-  - [x] Five-slot prebattle formation editor: select any two slots to swap, START BATTLE lock; headless UI test passed; physical Android acceptance pending
-  - [x] NavigationAgent3D now drives fighter movement on a two-polygon arena NavigationMesh; 10 agents and measured headless movement -2.50 -> -1.05; Android performance validation pending
+  - [x] Five-slot prebattle formation editor: select any two slots to swap, START BATTLE lock; headless UI test passed; owner Android screenshots accepted 2026-11-22
+  - [x] NavigationAgent3D now drives fighter movement on a two-polygon arena NavigationMesh; 10 agents and measured headless movement -2.50 -> -1.05; owner Android screenshots accepted 2026-11-22 (around 120 FPS during battle)
   - [ ] Validate AnimationTree and humanoid retargeting on distinct Meshy rigs
   - [ ] Extend LimboAI tactical behavior beyond first-living target selection
   - [ ] Restore GDD-01 addons and verify integrated project; document VPS-only Meshy asset/native binary reproducibility
