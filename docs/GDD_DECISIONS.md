@@ -279,3 +279,10 @@ Owner approved the following technical planning dispositions from docs/research/
 - GH04-089 BUILD: own world boss guaranteed eligible participation reward plus contribution/ranking bonus tiers, support scoring, anti-abuse, idempotent grants; thresholds deferred.
 - GH04-090 BUILD: own seasonal tower floor milestone and ranking reward resolver, automatic offline-safe season-end settlement, deduplicated payouts, audit and notifications; milestone table deferred.
 - This approval is documentation/planning only; no code, dependencies, integration, tests, server changes or APK builds authorized. Next: GDD-04 round 11 design.
+
+## GDD-04 - ROUND 11 APPROVED (2026-11-22)
+- XP-DECAY-RATE-001 B: after the first three full-XP repeat completions, repeat account XP follows a smooth sequence of 100%, 80%, 65%, 50%, then a minimum of 30% of the eligible repeat-clear base XP. Exact indexing beyond the displayed sequence, scope of repeat counter and reset semantics remain to be specified; first clears/quests retain full XP, no hard zero-XP cap.
+- DUNGEON-PRICE-SCALE-001 B: three paid extra entries per resource dungeon type per day cost 1x, 2x, 3x a configurable base price in ordinary earnable currency. Three free entries per type/day remain. Base price and currency name deferred.
+- BOSS-RANK-REWARD-001 C: world boss bonus rewards are allocated by percentile groups top 1%, 5%, 20%, 50%, in addition to the guaranteed eligible participation reward. Exact tie handling, bracket boundary rounding and bonus values deferred; support/healing contributions count.
+- TOWER-MILESTONE-001 B: seasonal tower floor milestone rewards every five floors, with enhanced rewards every 25 floors; separate leaderboard rewards and automatic season-end settlement remain. Exact floor cap, amounts and claim/deduplication policy deferred.
+- Next: GitHub research for each mechanic and separate technical candidate approval. No implementation, integration, dependencies, tests, server/game changes or APK builds authorized.
