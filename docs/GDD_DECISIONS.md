@@ -265,3 +265,17 @@ Owner explicitly approved the following planning dispositions, based on docs/res
 - BOSS-REWARD-TIER-001 C: world boss offers a guaranteed participation reward to eligible active/contributing players plus separate contribution/ranking bonuses. Support/healing contribution counts; thresholds and tier distribution deferred.
 - TOWER-REWARD-001 B: seasonal tower rewards include milestones for reached floors plus separate leaderboard placement rewards; automatically settled at season end for eligible rewards per SEASON-CLAIM-001 B. Permanent tower one-time rewards remain separate. Exact floor milestones, tier tables and duplicate rules deferred.
 - Next: GitHub research per mechanic and separate technical candidate approval. No implementation, dependencies, integration, tests, server/game changes or APK builds authorized.
+
+## GDD-04 - ROUND 10 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner approved the following technical planning dispositions from docs/research/GDD-04_ROUND-10_GITHUB_CANDIDATES.md:
+- GH04-081 STUDY: Rubonnek/quest-manager, quest progress/repeat state for account XP decay UI; server owns XP awards.
+- GH04-082 STUDY: PieKing1215/godot-loot-tables, Godot 4 WIP resource/reward preview reference; wallet and reward RNG remain server-side.
+- GH04-083 STUDY: ShomyKohai/quest-system, Godot 4.4+ progress/conditions for boss participation and tower floor milestones; no duplicate quest framework installation.
+- GH04-084 STUDY: CodingQuests/godot-multiplayer-starter, server-authoritative event patterns for boss eligibility/rank; ENet starter not a drop-in Go backend replacement.
+- GH04-085 STUDY: hatchet-dev/pgoutbox, pgx transactional outbox reference for XP/wallet/boss/tower notifications; own ledgers and idempotent consumer remain required.
+- GH04-086 ADAPT: reuse robfig/cron v3 for 06:00 Europe/Moscow daily repeat-counter and 28-day season settlement wake-ups; server persistence/recovery and idempotency custom.
+- GH04-087 BUILD: own per-source account XP repeat ledger, first three full repeat XP then diminishing nonzero floor, exemptions and idempotent first clears/quests; exact curve and reset scope deferred.
+- GH04-088 BUILD: own earnable-currency wallet and atomic transaction ledger for three paid extra dungeon entries per type/day at escalating prices; no mandatory premium currency.
+- GH04-089 BUILD: own world boss guaranteed eligible participation reward plus contribution/ranking bonus tiers, support scoring, anti-abuse, idempotent grants; thresholds deferred.
+- GH04-090 BUILD: own seasonal tower floor milestone and ranking reward resolver, automatic offline-safe season-end settlement, deduplicated payouts, audit and notifications; milestone table deferred.
+- This approval is documentation/planning only; no code, dependencies, integration, tests, server changes or APK builds authorized. Next: GDD-04 round 11 design.
