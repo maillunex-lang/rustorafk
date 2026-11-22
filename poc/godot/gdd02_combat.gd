@@ -14,6 +14,7 @@ var last_event := ""
 var visual_events: Array[Dictionary] = []
 var pending_hits: Array[Dictionary] = []
 var hit_sequence := 0
+var ai_targets: Dictionary = {}
 
 func setup() -> void:
     elapsed = 0.0
@@ -24,6 +25,7 @@ func setup() -> void:
     visual_events.clear()
     pending_hits.clear()
     hit_sequence = 0
+    ai_targets.clear()
     allies.clear()
     enemies.clear()
     for i in range(FORMATION_SLOTS):
@@ -76,7 +78,9 @@ func _tick_team(attacking: Array[Dictionary], defending: Array[Dictionary], delt
         if hero["attack_timer"] > 0:
             continue
         hero["attack_timer"] += 2.7
-        var target := _first_living(defending)
+        var target := int(ai_targets.get(actor + side * 5, -1))
+        if target < 0 or target >= defending.size() or defending[target]["hp"] <= 0:
+            target = _first_living(defending)
         if target < 0:
             return
         var damage := 7 if hero["role"] == "tank" else 11
