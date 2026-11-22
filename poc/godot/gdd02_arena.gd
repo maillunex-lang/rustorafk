@@ -38,6 +38,7 @@ var formation_panel: VBoxContainer
 var start_battle_button: Button
 var nav_agents: Array[NavigationAgent3D] = []
 var nav_region: NavigationRegion3D
+var formation_nameplates: Array[Label3D] = []
 
 func _ready() -> void:
     sim.setup()
@@ -73,6 +74,18 @@ func _ready() -> void:
             hero_model.rotation.y = PI if team == 1 else 0.0
             unit.add_child(hero_model)
             hero_models.append(hero_model)
+            if team == 0:
+                var plate := Label3D.new()
+                plate.name = "FormationIdentity"
+                plate.position = Vector3(0, 2.85, 0)
+                plate.font_size = 40
+                plate.pixel_size = 0.004
+                plate.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+                plate.no_depth_test = true
+                plate.outline_size = 8
+                plate.modulate = Color("#9fe7ff")
+                unit.add_child(plate)
+                formation_nameplates.append(plate)
             var player := _find_animation_player(hero_model)
             if player != null:
                 animation_players.append(player)
@@ -228,9 +241,16 @@ func _ready() -> void:
 
     formation_panel = VBoxContainer.new()
     formation_panel.add_theme_constant_override("separation", 4)
-    bottom.add_child(formation_panel)
+    # Separate anchored panel ABOVE the combat HUD; never clipped below the screen.
+    overlay.add_child(formation_panel)
+    formation_panel.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+    formation_panel.offset_left = 12
+    formation_panel.offset_right = -12
+    formation_panel.offset_top = -480
+    formation_panel.offset_bottom = -290
     var formation_title := Label.new()
-    formation_title.text = "FORMATION: tap two slots to swap, then START"
+    formation_title.text = "FORMATION: select two positions to swap" 
+    formation_title.add_theme_font_size_override("font_size", 20)
     formation_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     formation_panel.add_child(formation_title)
     var formation_row := HBoxContainer.new()
@@ -238,14 +258,20 @@ func _ready() -> void:
     formation_panel.add_child(formation_row)
     for i in range(5):
         var slot_button := Button.new()
-        slot_button.custom_minimum_size = Vector2(65, 48)
+        slot_button.custom_minimum_size = Vector2(65, 64)
+        slot_button.add_theme_font_size_override("font_size", 17)
         slot_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         slot_button.pressed.connect(_formation_slot.bind(i))
         formation_row.add_child(slot_button)
         formation_buttons.append(slot_button)
     start_battle_button = Button.new()
     start_battle_button.text = "START BATTLE"
-    start_battle_button.custom_minimum_size = Vector2(0, 46)
+    start_battle_button.custom_minimum_size = Vector2(0, 66)
+    start_battle_button.add_theme_font_size_override("font_size", 26)
+    var start_style := StyleBoxFlat.new()
+    start_style.bg_color = Color("#168a58")
+    start_style.set_corner_radius_all(12)
+    start_battle_button.add_theme_stylebox_override("normal", start_style)
     start_battle_button.pressed.connect(_start_battle)
     formation_panel.add_child(start_battle_button)
     _refresh()
@@ -296,6 +322,8 @@ func _start_battle() -> void:
     battle_started = true
     formation_selected = -1
     formation_panel.visible = false
+    for plate in formation_nameplates:
+        plate.visible = false
     skill_feedback.text = "BATTLE STARTED"
     skill_feedback_ttl = 2.0
     _refresh()
@@ -312,7 +340,11 @@ func _refresh() -> void:
     status.text = "GDD-02 | %.1fs | %d vs %d | ult: %d | %s" % [sim.elapsed, a, b, sim.ultimate_events, sim.winner]
     detail.text = sim.last_event
     for i in range(formation_buttons.size()):
-        formation_buttons[i].text = "%d: %s%s" % [i + 1, str(sim.allies[i]["role"]).to_upper(), " *" if formation_selected == i else ""]
+        var role: String = str(sim.allies[i]["role"]).to_upper()
+        formation_buttons[i].text = "%d\n%s" % [i + 1, role]
+        formation_buttons[i].modulate = Color("#ffd16b") if formation_selected == i else Color.WHITE
+        formation_nameplates[i].text = "%d: %s" % [i + 1, role]
+        formation_nameplates[i].modulate = Color("#ffd16b") if formation_selected == i else Color("#9fe7ff")
     for i in range(skill_buttons.size()):
         var cooldown: float = sim.allies[0]["cooldowns"][i]
         skill_buttons[i].disabled = not battle_started or cooldown > 0.0 or sim.allies[0]["hp"] <= 0 or sim.finished
