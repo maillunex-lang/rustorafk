@@ -184,3 +184,16 @@ Owner explicitly approved these planning dispositions after round-5 GitHub resea
 - DUNGEON-EXTRA-001 C: up to three extra entries per resource dungeon type each day, with increasing cost per purchase; free three per type remain unchanged. Resource denomination and cost curve deferred.
 - TOWER-RANK-001 B: seasonal tower ranks by highest cleared floor, with battle result as a secondary tie-breaker. Definition of battle result, remaining tie-breakers and season snapshot rules deferred.
 - Next: research GitHub for each mechanic and seek separate owner approval of GH04 round-6 technical proposals. No implementation authorized.
+
+## GDD-04 - ROUND 6 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner approved the following dispositions as planning decisions only:
+- GH04-044 STUDY: ShomyKohai/quest-system, Godot quest event/XP UI reference; no replacement of approved Questify.
+- GH04-045 STUDY: CodingQuests/godot-dialogue-quest-system, quest events and reward presentation reference; not client-authoritative XP.
+- GH04-046 STUDY: Rubonnek/quest-manager, sweep eligibility/result state reference; reuse prior GH04-017/028 STUDY.
+- GH04-047 STUDY: hatchet-dev/pgoutbox, durable event delivery for XP, sweep and purchases; reuse GH04-035 STUDY.
+- GH04-048 STUDY: ducthanhdragonvip/Realtime-Leader-Broad, Go/Postgres/Redis ranking architecture reference only. License NOT verified; no code copying or integration, Redis not approved.
+- GH04-049 BUILD: own authoritative account-XP ledger for campaign/quests/PvE with anti-farm limits and idempotent grants.
+- GH04-050 BUILD: own sweep eligibility after first victory, mode-specific attempt/energy consumption and atomic rewards.
+- GH04-051 BUILD: own maximum three extra dungeon purchases per type/day with increasing costs, server period keys and transactional debits.
+- GH04-052 BUILD: own seasonal tower leaderboard sorted by highest cleared floor then server-validated battle result, stable tie-breaking and anti-cheat.
+- Research record: docs/research/GDD-04_ROUND-6_GITHUB_CANDIDATES.md. No code changes, integrations, dependencies, tests or APK builds authorized. Next: GDD-04 round 7 design.
