@@ -55,7 +55,8 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [ ] Round 6 design: remaining campaign/PvE specifications (owner approval pending; research required after choices)
   - [x] Round 6 owner approved 2026-11-22: ACCOUNT-XP-001 C (campaign/quest/PvE XP with farm caps), SWEEP-001 B (after first win, spend mode attempts/energy), DUNGEON-EXTRA-001 C (up to 3 escalating-price extra entries per type/day), TOWER-RANK-001 B (highest floor then battle result)
   - [x] GitHub research after round 6: [GDD-04 round-6 candidates](docs/research/GDD-04_ROUND-6_GITHUB_CANDIDATES.md); GH04-044…052 proposed, license gap noted for leaderboard example
-  - [ ] Technical approval GH04-044…052 pending owner choice; no implementation or advance to next GDD round
+  - [x] Technical approval 2026-11-22: GH04-044 STUDY, GH04-045 STUDY, GH04-046 STUDY, GH04-047 STUDY, GH04-048 STUDY (license unverified, architecture only), GH04-049 BUILD, GH04-050 BUILD, GH04-051 BUILD, GH04-052 BUILD; implementation deferred
+  - [ ] Round 7 design: remaining PvE tuning, progression and seasonal rules (owner choices pending; research after approval)
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset time/time zone, permanent and seasonal tower state, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
