@@ -61,6 +61,9 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [x] GitHub research after round 7: [GDD-04 round-7 candidates](docs/research/GDD-04_ROUND-7_GITHUB_CANDIDATES.md), GH04-053…061 proposed for separate owner technical approval
   - [x] Technical approval 2026-11-22: GH04-053 STUDY, GH04-054 STUDY, GH04-055 STUDY, GH04-056 STUDY (unverified license, architecture only), GH04-057 ADAPT, GH04-058 BUILD, GH04-059 BUILD, GH04-060 BUILD, GH04-061 BUILD; implementation deferred
   - [ ] Round 8 design: remaining PvE rule details (owner choices pending; research required after approval)
+  - [x] Round 8 owner approved 2026-11-22: TOWER-HP-001 B (remaining total team HP percentage), SEASON-ANCHOR-001 B (global Monday 06:00 MSK every four weeks), SWEEP-ACCESS-001 B (repeatable PvE only after first victory), BOSS-ELIGIBILITY-001 C (minimum contribution OR meaningful activity)
+  - [x] GitHub research after round 8: [GDD-04 round-8 candidates](docs/research/GDD-04_ROUND-8_GITHUB_CANDIDATES.md), GH04-062…070 proposed for separate owner technical approval
+  - [ ] Technical approval GH04-062…070 pending; no integration and no advance to next GDD round before owner choice
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset time/time zone, permanent and seasonal tower state, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
