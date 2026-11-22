@@ -117,6 +117,11 @@ func _ready() -> void:
     button.text = "ULTIMATE"
     button.pressed.connect(_ultimate)
     panel.add_child(button)
+    for skill_index in range(3):
+        var skill_button := Button.new()
+        skill_button.text = ["GUARD (shield)", "STRIKE (damage)", "RECOVER (heal)"][skill_index]
+        skill_button.pressed.connect(_skill.bind(skill_index))
+        panel.add_child(skill_button)
     var arrange := Button.new()
     arrange.text = "SWAP 1 / 5 (before battle)"
     arrange.pressed.connect(_swap)
@@ -135,6 +140,11 @@ func _find_animation_player(node: Node) -> AnimationPlayer:
 func _ultimate() -> void:
     if sim.manual_ultimate(0):
         ultimate_flash = 0.35
+        _consume_events()
+    _refresh()
+
+func _skill(skill_index: int) -> void:
+    if sim.use_skill(0, skill_index):
         _consume_events()
     _refresh()
 
@@ -188,6 +198,12 @@ func _consume_events() -> void:
         elif event["kind"] == "ultimate":
             _spawn_impact(target, 65, false)
             _play_action(actor, "Charged_Slash")
+        elif event["kind"] == "skill":
+            _play_action(actor, "Thrust_Slash")
+        elif event["kind"] == "shield":
+            _play_action(actor, "Combat_Stance")
+        elif event["kind"] == "heal":
+            _play_action(actor, "Combat_Stance")
         elif event["kind"] == "attack":
             _play_action(actor, "Left_Slash" if actor % 2 == 0 else "Thrust_Slash")
     sim.visual_events.clear()
