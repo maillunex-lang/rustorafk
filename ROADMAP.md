@@ -1,3 +1,7 @@
+## GDD workflow: accelerated design-first (2026-11-22)
+
+Owner requested that remaining GDD work be concise: present 3–4 design options per system, record approved choices and deferred implementation requirements, then move to next GDD section. Do not build APKs, integrate plugins, run exhaustive tests or implement unfinished features during GDD unless separately requested. Existing GDD-02 prototype and approved decisions remain intact. Remaining GDD-02 tasks (automatic ordinary-skill use, balance, AnimationTree/retargeting, full integration, production server authority and device QA) are implementation backlog, not a blocker to design-stage progression. GitHub candidates must still be separately approved before any integration. GDD-02 design closure and GDD-03 start require explicit owner approval.
+
 # ROADMAP - RuStore AFK
 
 Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated PoC underway; GDD-03 blocked until owner acceptance.
