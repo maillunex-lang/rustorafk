@@ -20,6 +20,9 @@ var performance_label: Label
 var skill_buttons: Array[Button] = []
 var skill_feedback: Label
 var skill_feedback_ttl := 0.0
+var ultimate_button: Button
+var hud_cooldown_labels: Array[Label] = []
+var hud_ultimate_label: Label
 var perf_elapsed := 0.0
 var fps_min := 999.0
 var fps_sum := 0.0
@@ -106,33 +109,93 @@ func _ready() -> void:
     add_child(phantom)
     var canvas := CanvasLayer.new()
     add_child(canvas)
-    var panel := VBoxContainer.new()
-    panel.set_anchors_preset(Control.PRESET_TOP_WIDE)
-    canvas.add_child(panel)
+    var overlay := Control.new()
+    overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    canvas.add_child(overlay)
+
+    var top_panel := VBoxContainer.new()
+    top_panel.set_anchors_preset(Control.PRESET_TOP_WIDE)
+    top_panel.offset_left = 14
+    top_panel.offset_right = -14
+    top_panel.offset_top = 18
+    top_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    overlay.add_child(top_panel)
     status = Label.new()
-    panel.add_child(status)
+    status.add_theme_font_size_override("font_size", 20)
+    top_panel.add_child(status)
     detail = Label.new()
-    panel.add_child(detail)
+    detail.add_theme_font_size_override("font_size", 15)
+    top_panel.add_child(detail)
     performance_label = Label.new()
-    performance_label.add_theme_color_override("font_color", Color(0.9, 1.0, 0.6))
-    panel.add_child(performance_label)
-    var button := Button.new()
-    button.text = "ULTIMATE"
-    button.pressed.connect(_ultimate)
-    panel.add_child(button)
-    for skill_index in range(3):
-        var skill_button := Button.new()
-        skill_button.text = ["GUARD (shield)", "STRIKE (damage)", "RECOVER (heal)"][skill_index]
-        skill_button.pressed.connect(_skill.bind(skill_index))
-        panel.add_child(skill_button)
-        skill_buttons.append(skill_button)
+    performance_label.add_theme_font_size_override("font_size", 13)
+    performance_label.add_theme_color_override("font_color", Color(0.8, 1.0, 0.55))
+    top_panel.add_child(performance_label)
+
+    var bottom := VBoxContainer.new()
+    bottom.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+    bottom.offset_left = 14
+    bottom.offset_right = -14
+    bottom.offset_top = -205
+    bottom.offset_bottom = -18
+    bottom.add_theme_constant_override("separation", 7)
+    overlay.add_child(bottom)
     skill_feedback = Label.new()
-    skill_feedback.add_theme_color_override("font_color", Color(0.35, 1.0, 0.9))
-    panel.add_child(skill_feedback)
+    skill_feedback.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    skill_feedback.add_theme_font_size_override("font_size", 18)
+    skill_feedback.add_theme_color_override("font_color", Color(0.45, 1.0, 0.85))
+    bottom.add_child(skill_feedback)
+
+    var ability_row := HBoxContainer.new()
+    ability_row.alignment = BoxContainer.ALIGNMENT_CENTER
+    ability_row.add_theme_constant_override("separation", 10)
+    bottom.add_child(ability_row)
+    var names := ["GUARD", "STRIKE", "RECOVER", "ULTIMATE"]
+    var symbols := ["◆", "✦", "+", "★"]
+    for i in range(4):
+        var tile := VBoxContainer.new()
+        tile.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        ability_row.add_child(tile)
+        var skill_button := Button.new()
+        skill_button.custom_minimum_size = Vector2(112, 92)
+        skill_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        skill_button.text = symbols[i] + "\n" + names[i]
+        skill_button.add_theme_font_size_override("font_size", 16)
+        skill_button.add_theme_color_override("font_color", Color.WHITE)
+        var normal := StyleBoxFlat.new()
+        normal.bg_color = Color(0.11, 0.18, 0.30, 0.94) if i < 3 else Color(0.38, 0.22, 0.12, 0.96)
+        normal.border_color = Color(0.35, 0.69, 0.96) if i < 3 else Color(1.0, 0.74, 0.32)
+        normal.set_border_width_all(2)
+        normal.set_corner_radius_all(16)
+        skill_button.add_theme_stylebox_override("normal", normal)
+        var pressed := normal.duplicate()
+        pressed.bg_color = Color(0.20, 0.40, 0.60)
+        skill_button.add_theme_stylebox_override("pressed", pressed)
+        var disabled_style := normal.duplicate()
+        disabled_style.bg_color = Color(0.17, 0.18, 0.22, 0.90)
+        skill_button.add_theme_stylebox_override("disabled", disabled_style)
+        if i == 3:
+            ultimate_button = skill_button
+            skill_button.pressed.connect(_ultimate)
+        else:
+            skill_buttons.append(skill_button)
+            skill_button.pressed.connect(_skill.bind(i))
+        tile.add_child(skill_button)
+        var cooldown_label := Label.new()
+        cooldown_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        cooldown_label.add_theme_font_size_override("font_size", 16)
+        cooldown_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.45))
+        tile.add_child(cooldown_label)
+        if i == 3:
+            hud_ultimate_label = cooldown_label
+        else:
+            hud_cooldown_labels.append(cooldown_label)
+
     var arrange := Button.new()
     arrange.text = "SWAP 1 / 5 (before battle)"
+    arrange.custom_minimum_size = Vector2(0, 40)
     arrange.pressed.connect(_swap)
-    panel.add_child(arrange)
+    bottom.add_child(arrange)
     _refresh()
 
 func _find_animation_player(node: Node) -> AnimationPlayer:
@@ -178,8 +241,10 @@ func _refresh() -> void:
     detail.text = sim.last_event
     for i in range(skill_buttons.size()):
         var cooldown: float = sim.allies[0]["cooldowns"][i]
-        skill_buttons[i].text = ["GUARD", "STRIKE", "RECOVER"][i] + (" (%.1fs)" % cooldown if cooldown > 0.0 else " (READY)")
         skill_buttons[i].disabled = cooldown > 0.0 or sim.allies[0]["hp"] <= 0 or sim.finished
+        hud_cooldown_labels[i].text = "%.1f s" % cooldown if cooldown > 0.0 else "READY"
+    ultimate_button.disabled = sim.finished or sim.allies[0]["hp"] <= 0 or sim.allies[0]["cooldowns"][3] > 0.0
+    hud_ultimate_label.text = "%.1f s" % sim.allies[0]["cooldowns"][3] if sim.allies[0]["cooldowns"][3] > 0.0 else "READY"
 
 func _play_action(index: int, name: String) -> void:
     if index < 0 or index >= animation_players.size():
