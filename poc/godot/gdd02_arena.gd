@@ -17,6 +17,9 @@ var fighters: Array[Node3D] = []
 var status: Label
 var detail: Label
 var performance_label: Label
+var skill_buttons: Array[Button] = []
+var skill_feedback: Label
+var skill_feedback_ttl := 0.0
 var perf_elapsed := 0.0
 var fps_min := 999.0
 var fps_sum := 0.0
@@ -122,6 +125,10 @@ func _ready() -> void:
         skill_button.text = ["GUARD (shield)", "STRIKE (damage)", "RECOVER (heal)"][skill_index]
         skill_button.pressed.connect(_skill.bind(skill_index))
         panel.add_child(skill_button)
+        skill_buttons.append(skill_button)
+    skill_feedback = Label.new()
+    skill_feedback.add_theme_color_override("font_color", Color(0.35, 1.0, 0.9))
+    panel.add_child(skill_feedback)
     var arrange := Button.new()
     arrange.text = "SWAP 1 / 5 (before battle)"
     arrange.pressed.connect(_swap)
@@ -144,8 +151,11 @@ func _ultimate() -> void:
     _refresh()
 
 func _skill(skill_index: int) -> void:
-    if sim.use_skill(0, skill_index):
+    var accepted := sim.use_skill(0, skill_index)
+    if accepted:
         _consume_events()
+    skill_feedback.text = ("OK: " if accepted else "WAIT: ") + sim.last_event
+    skill_feedback_ttl = 3.0
     _refresh()
 
 func _swap() -> void:
@@ -166,6 +176,10 @@ func _refresh() -> void:
             b += 1
     status.text = "GDD-02 | %.1fs | %d vs %d | ult: %d | %s" % [sim.elapsed, a, b, sim.ultimate_events, sim.winner]
     detail.text = sim.last_event
+    for i in range(skill_buttons.size()):
+        var cooldown: float = sim.allies[0]["cooldowns"][i]
+        skill_buttons[i].text = ["GUARD", "STRIKE", "RECOVER"][i] + (" (%.1fs)" % cooldown if cooldown > 0.0 else " (READY)")
+        skill_buttons[i].disabled = cooldown > 0.0 or sim.allies[0]["hp"] <= 0 or sim.finished
 
 func _play_action(index: int, name: String) -> void:
     if index < 0 or index >= animation_players.size():
@@ -199,14 +213,33 @@ func _consume_events() -> void:
             _spawn_impact(target, 65, false)
             _play_action(actor, "Charged_Slash")
         elif event["kind"] == "skill":
+            _spawn_ability_flash(target, Color(1.0, 0.4, 0.1), 0.48)
             _play_action(actor, "Thrust_Slash")
         elif event["kind"] == "shield":
-            _play_action(actor, "Combat_Stance")
+            _spawn_ability_flash(actor, Color(0.15, 0.55, 1.0), 0.70)
         elif event["kind"] == "heal":
-            _play_action(actor, "Combat_Stance")
+            _spawn_ability_flash(target, Color(0.15, 1.0, 0.3), 0.70)
         elif event["kind"] == "attack":
             _play_action(actor, "Left_Slash" if actor % 2 == 0 else "Thrust_Slash")
     sim.visual_events.clear()
+
+func _spawn_ability_flash(target: int, tint: Color, radius: float) -> void:
+    if target < 0 or target >= fighters.size():
+        return
+    var sphere := MeshInstance3D.new()
+    var mesh := SphereMesh.new()
+    mesh.radius = radius
+    mesh.height = radius * 2.0
+    sphere.mesh = mesh
+    var mat := StandardMaterial3D.new()
+    mat.albedo_color = tint
+    mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+    sphere.material_override = mat
+    sphere.position = fighters[target].global_position + Vector3(0, 1.3, 0)
+    add_child(sphere)
+    effect_nodes.append(sphere)
+    effect_ttl.append(0.65)
+    effect_total += 1
 
 func _spawn_impact(target: int, damage: int, fatal: bool) -> void:
     if target < 0 or target >= fighters.size():
@@ -227,6 +260,9 @@ func _spawn_impact(target: int, damage: int, fatal: bool) -> void:
     effect_total += 1
 
 func _process(delta: float) -> void:
+    skill_feedback_ttl = maxf(0.0, skill_feedback_ttl - delta)
+    if skill_feedback_ttl == 0.0 and skill_feedback != null:
+        skill_feedback.text = ""
     perf_elapsed += delta
     if perf_elapsed >= 1.0:
         perf_elapsed = 0.0
