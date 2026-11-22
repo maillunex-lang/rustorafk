@@ -4,6 +4,11 @@ const MAX_SECONDS := 60.0
 const SKILLS_PER_HERO := 4
 const FORMATION_SLOTS := 5
 const ROLES := ["tank", "warrior", "assassin", "marksman", "mage", "support"]
+# Skill slots 0-2: guard, strike, recovery; slot 3 is the manual ultimate.
+const SKILL_COOLDOWNS := [6.0, 4.0, 9.0, 10.0]
+const ROLE_SKILL_DAMAGE := {"tank": 9, "warrior": 18, "assassin": 24, "marksman": 17, "mage": 21, "support": 7}
+const ROLE_HEALING := {"tank": 8, "warrior": 6, "assassin": 4, "marksman": 5, "mage": 8, "support": 25}
+const ROLE_SHIELDS := {"tank": 35, "warrior": 16, "assassin": 9, "marksman": 12, "mage": 14, "support": 20}
 var elapsed := 0.0
 var allies: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
@@ -34,7 +39,7 @@ func setup() -> void:
 
 func _hero(slot: int, role: String) -> Dictionary:
     var max_hp := 175 if role == "tank" else 115
-    return {"slot":slot, "role":role, "hp":max_hp, "max_hp":max_hp, "energy":100, "cooldowns":[0.0,0.0,0.0,0.0], "attack_timer":float(slot)*0.15}
+    return {"slot":slot, "role":role, "hp":max_hp, "max_hp":max_hp, "energy":100, "cooldowns":[0.0,0.0,0.0,0.0], "attack_timer":float(slot)*0.15, "shield":0}
 
 func move_formation(from_slot: int, to_slot: int) -> bool:
     if elapsed > 0.0 or from_slot < 0 or to_slot < 0 or from_slot >= FORMATION_SLOTS or to_slot >= FORMATION_SLOTS:
@@ -45,6 +50,43 @@ func move_formation(from_slot: int, to_slot: int) -> bool:
     allies[from_slot]["slot"] = from_slot
     allies[to_slot]["slot"] = to_slot
     return true
+
+func use_skill(slot: int, skill: int) -> bool:
+    if finished or slot < 0 or slot >= FORMATION_SLOTS or skill < 0 or skill > 2:
+        return false
+    var hero: Dictionary = allies[slot]
+    if hero["hp"] <= 0 or hero["cooldowns"][skill] > 0.0:
+        return false
+    hero["cooldowns"][skill] = SKILL_COOLDOWNS[skill]
+    var role: String = hero["role"]
+    if skill == 0:
+        hero["shield"] += int(ROLE_SHIELDS[role])
+        visual_events.append({"kind":"shield", "actor":slot, "target":slot})
+    elif skill == 1:
+        var target := _first_living(enemies)
+        if target >= 0:
+            _queue_hit(slot, 5 + target, int(ROLE_SKILL_DAMAGE[role]), "skill", 0.45)
+            visual_events.append({"kind":"skill", "actor":slot, "target":5 + target})
+    else:
+        var target := _lowest_hp_living(allies)
+        if target >= 0:
+            var teammate: Dictionary = allies[target]
+            teammate["hp"] = mini(int(teammate["max_hp"]), int(teammate["hp"]) + int(ROLE_HEALING[role]))
+            visual_events.append({"kind":"heal", "actor":slot, "target":target})
+    return true
+
+func _lowest_hp_living(team: Array[Dictionary]) -> int:
+    var selected := -1
+    var ratio := 2.0
+    for i in range(team.size()):
+        var hero: Dictionary = team[i]
+        if hero["hp"] <= 0:
+            continue
+        var current := float(hero["hp"]) / float(hero["max_hp"])
+        if current < ratio:
+            ratio = current
+            selected = i
+    return selected
 
 func manual_ultimate(slot: int) -> bool:
     if finished or slot < 0 or slot >= FORMATION_SLOTS:
@@ -107,7 +149,11 @@ func _resolve_hits() -> void:
         var hero: Dictionary = team[index if index < 5 else index - 5]
         if hero["hp"] <= 0:
             continue
-        hero["hp"] = maxi(0, hero["hp"] - int(hit["damage"]))
+        var damage: int = int(hit["damage"])
+        var absorbed: int = mini(int(hero["shield"]), damage)
+        hero["shield"] -= absorbed
+        damage -= absorbed
+        hero["hp"] = maxi(0, hero["hp"] - damage)
         visual_events.append({"kind":"impact", "actor":hit["actor"], "target":index, "damage":hit["damage"], "fatal":hero["hp"] <= 0})
 
 func _evaluate() -> void:
@@ -135,9 +181,10 @@ func step(delta: float) -> void:
         return
     delta = maxf(0.0, delta)
     elapsed = minf(MAX_SECONDS, elapsed + delta)
-    for hero in allies:
-        for i in range(SKILLS_PER_HERO):
-            hero["cooldowns"][i] = maxf(0.0, hero["cooldowns"][i] - delta)
+    for team in [allies, enemies]:
+        for hero in team:
+            for i in range(SKILLS_PER_HERO):
+                hero["cooldowns"][i] = maxf(0.0, hero["cooldowns"][i] - delta)
     _tick_team(allies, enemies, delta, 0)
     _tick_team(enemies, allies, delta, 1)
     _resolve_hits()
