@@ -46,5 +46,10 @@ GDD-01 technology selections approved 2026-11-22:
 ## GDD-02 design handoff (2026-11-22)
 Owner explicitly authorized transition to GDD-03 in accelerated design-first mode. GDD-02 design decisions and isolated Android prototype are retained; this is not final production implementation/QA acceptance. Deferred to development: automatic ordinary skills, balance, AnimationTree/retargeting, integration of GDD-01 addons, reproducible Meshy and native binary pipeline, extended Android QA.
 
-## GDD-03 - IN DESIGN (2026-11-22)
-Scope: heroes, collection, rarity and progression. Proposed decisions HERO-001, RARITY-001, LEVEL-001 and DUP-001 are awaiting owner choice; do not treat recommendations as approvals. No code or APK during GDD unless explicitly requested.
+## GDD-03 - ROUND 1 APPROVED (2026-11-22)
+- HERO-001 D: hybrid hero acquisition via summons, hero fragments, events and story rewards.
+- RARITY-001 C: six hero rarities N / R / SR / SSR / UR / Mythic.
+- LEVEL-001 C: hero progression via level, stars, skills and equipment. Awakening/talents are not included by this choice.
+- DUP-001 D: duplicate heroes support a hybrid system of star upgrades, fragments and exchange; precise conversion rates and rules are deferred to development/balance design.
+- Preserve GDD-01 roster target of 24 unique heroes at full release and GDD-02 six combat roles. These decisions do not specify rarity distribution, summon odds, currencies, caps or pricing; those remain undecided.
+- GDD-03 further rounds pending owner selection. No implementation, APK, or third-party integration during GDD without explicit request.
