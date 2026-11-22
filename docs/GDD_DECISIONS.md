@@ -258,3 +258,10 @@ Owner explicitly approved the following planning dispositions, based on docs/res
 - GH04-079 BUILD: own world-boss contribution scoring for damage, effective healing, buffs and prevented damage, with deduplication and anti-abuse; coefficients deferred.
 - GH04-080 BUILD: own automatic seasonal tower reward settlement, offline-safe inventory/mailbox credit, notifications, unique claim keys and audit/retry.
 - Approval records technical design only; no implementation, dependencies, integration, tests, server/game changes or APK builds authorized. Next: GDD-04 round 10 design.
+
+## GDD-04 - ROUND 10 APPROVED (2026-11-22)
+- XP-DECAY-001 B: first three eligible repeat completions grant the full repeat-clear account XP amount; subsequent repeated farming progressively diminishes account XP to a nonzero minimum. First-time clears and quests retain full account XP per XP-CAP-001 C. Exact decay function, minimum and per-source/reset scope deferred; no universal hard XP cap.
+- DUNGEON-CURRENCY-001 B: extra resource dungeon entries are purchased using ordinary earnable in-game currency, not mandatory premium diamonds; three free entries per type/day remain and three paid entries per type/day use escalating price ladder. Exact currency name, amounts and sinks deferred.
+- BOSS-REWARD-TIER-001 C: world boss offers a guaranteed participation reward to eligible active/contributing players plus separate contribution/ranking bonuses. Support/healing contribution counts; thresholds and tier distribution deferred.
+- TOWER-REWARD-001 B: seasonal tower rewards include milestones for reached floors plus separate leaderboard placement rewards; automatically settled at season end for eligible rewards per SEASON-CLAIM-001 B. Permanent tower one-time rewards remain separate. Exact floor milestones, tier tables and duplicate rules deferred.
+- Next: GitHub research per mechanic and separate technical candidate approval. No implementation, dependencies, integration, tests, server/game changes or APK builds authorized.
