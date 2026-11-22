@@ -51,7 +51,8 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [ ] Round 5 design: specify remaining PvE balancing/access parameters and chapter-level gate (owner choices pending; research required afterward)
   - [x] Round 5 owner approved 2026-11-22: CHAPTER-LEVEL-001 B (account level + previous chapter), DUNGEON-LIMIT-001 B (3 free daily attempts per type), TOWER-SEASON-001 C (28 days), DIFFICULTY-001 C (stats + abilities + stage conditions)
   - [x] GitHub research after round 5: [GDD-04 round-5 candidates](docs/research/GDD-04_ROUND-5_GITHUB_CANDIDATES.md), GH04-035…043 proposed for separate owner technical approval
-  - [ ] Technical approval GH04-035…043 pending; no integration authorized and do not advance to next GDD round
+  - [x] Technical approval 2026-11-22: GH04-035 STUDY, GH04-036 ADAPT, GH04-037 ADAPT, GH04-038 STUDY, GH04-039 STUDY, GH04-040 BUILD, GH04-041 BUILD, GH04-042 BUILD, GH04-043 BUILD; implementation deferred
+  - [ ] Round 6 design: remaining campaign/PvE specifications (owner approval pending; research required after choices)
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset time/time zone, permanent and seasonal tower state, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
