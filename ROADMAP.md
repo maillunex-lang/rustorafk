@@ -49,6 +49,9 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [x] GitHub research after round 4: [GDD-04 round-4 candidates](docs/research/GDD-04_ROUND-4_GITHUB_CANDIDATES.md); GH04-026…034 proposed for separate owner technical approval
   - [x] Technical approval 2026-11-22: GH04-026 ADAPT, GH04-027 STUDY, GH04-028 STUDY, GH04-029 STUDY, GH04-030 STUDY, GH04-031 BUILD, GH04-032 BUILD, GH04-033 BUILD, GH04-034 BUILD; no implementation authorized
   - [ ] Round 5 design: specify remaining PvE balancing/access parameters and chapter-level gate (owner choices pending; research required afterward)
+  - [x] Round 5 owner approved 2026-11-22: CHAPTER-LEVEL-001 B (account level + previous chapter), DUNGEON-LIMIT-001 B (3 free daily attempts per type), TOWER-SEASON-001 C (28 days), DIFFICULTY-001 C (stats + abilities + stage conditions)
+  - [x] GitHub research after round 5: [GDD-04 round-5 candidates](docs/research/GDD-04_ROUND-5_GITHUB_CANDIDATES.md), GH04-035…043 proposed for separate owner technical approval
+  - [ ] Technical approval GH04-035…043 pending; no integration authorized and do not advance to next GDD round
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset time/time zone, permanent and seasonal tower state, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
