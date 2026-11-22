@@ -204,3 +204,16 @@ Owner approved the following dispositions as planning decisions only:
 - TOWER-TIE-001 B: seasonal tower ranking first sorts by highest cleared floor, then remaining team health, then time the floor was achieved. Exact health normalization and timestamp semantics deferred.
 - SEASON-RESET-001 B: 28-day tower seasons roll over at 06:00 Europe/Moscow, aligned to daily reset; anchor date and reward-claim grace policy deferred. Permanent tower remains unchanged.
 - Next: GitHub research per mechanic and separate technical candidate approval. No implementation, dependencies, tests or builds authorized.
+
+## GDD-04 - ROUND 7 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved these planning dispositions after round-7 GitHub research:
+- GH04-053 STUDY: Rubonnek/quest-manager, quest state/UI reference for first-time and repeat account-XP presentation; reuse previous STUDY, no plugin installation.
+- GH04-054 STUDY: hatchet-dev/pgoutbox, PostgreSQL transactional event delivery reference for XP/rewards/season notifications; reuse previous STUDY.
+- GH04-055 STUDY: PieKing1215/godot-loot-tables, Godot 4 WIP weighted loot table editor reference for sweep/normal reward parity; no client-authoritative RNG.
+- GH04-056 STUDY: ducthanhdragonvip/Realtime-Leader-Broad, ranking architecture only; LICENSE NOT verified, no code copying, Redis not approved.
+- GH04-057 ADAPT: reuse robfig/cron v3 for 06:00 Europe/Moscow season rollover trigger; exact 28-day period anchors, recovery and transactions are custom.
+- GH04-058 BUILD: own server first-clear and repeat-farm account XP ledger with configurable diminishing returns and idempotent grants.
+- GH04-059 BUILD: own shared server reward resolver for normal and sweep battles, same eligible loot pools and probabilities, atomic spend and claim.
+- GH04-060 BUILD: own seasonal tower rank comparator (highest floor, remaining team HP, achievement time), validation and snapshot; HP metric deferred.
+- GH04-061 BUILD: own 28-day season rollover at 06:00 MSK with settlement, idempotency and outage recovery; permanent tower untouched.
+- Research record: docs/research/GDD-04_ROUND-7_GITHUB_CANDIDATES.md. This approval does not authorize integration, implementation, installs, testing or builds. Next: GDD-04 round 8 design choices.
