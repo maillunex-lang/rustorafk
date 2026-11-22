@@ -137,3 +137,10 @@ Owner explicitly approved all nine technical candidate dispositions following th
 - GH04-024 BUILD: custom data-driven gold/XP/equipment/material dungeon definitions and server-validated entry/rewards.
 - GH04-025 BUILD: custom world-boss damage ranking plus separate authoritative cooperative encounters.
 - Research record: docs/research/GDD-04_ROUND-3_GITHUB_CANDIDATES.md. Godot 4.7.2/Android compatibility tests and implementation remain deferred. Next: GDD-04 round 4 design.
+
+## GDD-04 - ROUND 4 APPROVED (2026-11-22)
+- QUEST-RESET-001 B: unified server daily reset at 06:00 Moscow time; weekly reset on Monday at the same server boundary. Moscow time is UTC+03:00. Event exceptions and notification behavior deferred.
+- TOWER-REWARD-001 C: permanent tower progress never seasonally resets and offers one-time floor rewards; separate seasonal tower has repeatable seasonal rewards and a ranking. Season length, claim timing and tie rules deferred.
+- DUNGEON-ENTRY-001 B: free daily dungeon attempts plus optional extra entries purchased with in-game resources; exact number, costs, caps and whether resources are premium deferred, no real-money purchases implied.
+- BOSS-REWARD-001 C: participation reward plus individual contribution and ranking rewards for world boss; separate co-op rewards. Contribution floors, eligibility and anti-abuse rules deferred.
+- Next: GitHub research for each mechanism, propose technical candidates for separate owner approval. No implementation, integration, tests or builds.
