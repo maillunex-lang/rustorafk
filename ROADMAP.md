@@ -16,7 +16,7 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
 - [x] GDD-02-R: GitHub candidate research and preliminary licensing/compatibility review
 - [x] GDD-02-T: owner approved AI adapt, movement adopt, skills build, camera adapt, animation adopt, formation build
 - [ ] GDD-02-P: isolated Android PoC functional and owner-tested; final feature acceptance NOT yet granted. Detailed audit: [GDD-02 gap audit](docs/audits/GDD-02_GAP_AUDIT_2026-11-22.md)
-  - [x] 5v5 auto combat, manual ultimate, synchronized Meshy animations, impact VFX, death/victory animations
+  - [x] Owner approved upgraded mobile combat HUD on Android (2026-11-22): four large skill buttons, vector icons, circular cooldown indicators; screenshot confirms RECOVER +8 HP, FPS 121 / avg 102.3, Godot RAM 39.1 MB, VRAM 91.5 MB. Minor icon vertical alignment polish remains optional.\n  - [x] 5v5 auto combat, manual ultimate, synchronized Meshy animations, impact VFX, death/victory animations
   - [x] LimboAI v1.8.1 compiled for Linux and Android ARM64; 10 BTPlayer target selectors verified headless and APK tested on Android
   - [x] Phantom Camera integrated; Android owner confirms comfortable view and smooth combat
   - [x] Android snapshot: FPS 121 / min 98 / avg 120.0, Godot RAM 38.1 MB / peak 63.6 MB, VRAM 90.8 MB (one run/device; not full Android RSS)
