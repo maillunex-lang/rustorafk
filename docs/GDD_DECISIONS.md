@@ -224,3 +224,16 @@ Owner explicitly approved these planning dispositions after round-7 GitHub resea
 - SWEEP-ACCESS-001 B: sweeps unlock after the first victory ONLY on repeatable PvE stages; non-repeatable/story-only rewards and other modes are excluded unless later explicitly approved. Existing mode-specific attempts/energy consumption and equal eligible reward chances remain.
 - BOSS-ELIGIBILITY-001 C: world boss participation rewards require a validated minimum contribution OR meaningful active participation; exact thresholds, anti-idle criteria and accessibility cases deferred. Ranking/contribution rewards remain separate.
 - Next: GitHub research for each approved mechanic and separate owner approval of GH04 round-8 technical candidates. No implementation, installation, testing, server/game changes or APK builds authorized.
+
+## GDD-04 - ROUND 8 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved these planning dispositions:
+- GH04-062 STUDY: CodingQuests/godot-multiplayer-starter, authoritative multiplayer action/event patterns for world-boss participation; Godot ENet example is not a drop-in replacement for Go backend.
+- GH04-063 STUDY: Rubonnek/quest-manager, first-victory/repeatable PvE stage sweep UI state reference; reuse previous STUDY.
+- GH04-064 STUDY: ShomyKohai/quest-system, quest/event conditions for participation and sweep UI; reuse previous STUDY, no duplicate integration.
+- GH04-065 STUDY: go-co-op/gocron v2, alternative Go scheduler reference; robfig/cron remains selected for adaptation.
+- GH04-066 ADAPT: robfig/cron v3, Monday 06:00 Europe/Moscow season boundary wake-up; PostgreSQL stores actual 28-day anchor/season IDs and recovery state.
+- GH04-067 BUILD: own server validated seasonal tower remaining HP percentage tie-break and deterministic ranking snapshots; exact rounding/dead-hero semantics deferred.
+- GH04-068 BUILD: own globally anchored Monday 06:00 MSK 28-day season IDs, rollover and outage recovery, independent permanent tower; first anchor date deferred.
+- GH04-069 BUILD: own server sweep eligibility on repeatable PvE stages after first victory, mode-specific attempts/energy and equal eligible reward chances.
+- GH04-070 BUILD: own world-boss contribution/active participation event ledger, anti-AFK checks and support/healing participation; exact thresholds deferred.
+- Research: docs/research/GDD-04_ROUND-8_GITHUB_CANDIDATES.md. Approval does not authorize implementation, integration, dependency installation, tests, server/game changes or APK builds. Next: GDD-04 round 9 design choices.
