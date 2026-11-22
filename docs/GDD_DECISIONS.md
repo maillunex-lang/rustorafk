@@ -244,3 +244,17 @@ Owner explicitly approved these planning dispositions:
 - BOSS-SUPPORT-001 C: world boss contribution accounts for damage, effective healing, beneficial buffs and prevented damage, with anti-exploit protections. Support/tank participation must not be unfairly excluded; exact coefficients, attribution windows and caps deferred.
 - SEASON-CLAIM-001 B: at season close server automatically grants earned tower seasonal rewards and notifies players, including offline players. Grants must be idempotent and auditable; delivery UI and retention policy deferred.
 - Next: GitHub research per mechanic and separate technical candidate approval. No implementation, integration, installs, tests, server/game changes or APK builds authorized.
+
+## GDD-04 - ROUND 9 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved the following planning dispositions, based on docs/research/GDD-04_ROUND-9_GITHUB_CANDIDATES.md:
+- GH04-071 STUDY: Rubonnek/quest-manager, hierarchical quest conditions for chapter unlock UI; reuse prior STUDY, no client-side authority.
+- GH04-072 STUDY: ShomyKohai/quest-system, Godot 4.4+ modular quest events and chapter unlock feedback; no competing quest framework integration.
+- GH04-073 STUDY: PieKing1215/godot-loot-tables, Godot 4 WIP resource/reward display reference for dungeons; pricing and debits remain server-side.
+- GH04-074 STUDY: CodingQuests/godot-multiplayer-starter, authoritative action-event patterns for boss contribution; ENet example is not a drop-in replacement for Go server.
+- GH04-075 STUDY: hatchet-dev/pgoutbox, PostgreSQL transactional outbox reference for offline seasonal notifications; not the reward ledger.
+- GH04-076 ADAPT: reuse robfig/cron v3 for 06:00 Europe/Moscow seasonal settlement wake-up; PostgreSQL stores anchored 28-day season and handles recovery.
+- GH04-077 BUILD: own versioned data-driven per-chapter account level and previous-chapter gates, validated by server and configurable in admin panel; exact thresholds deferred.
+- GH04-078 BUILD: own three-step escalating extra dungeon entry price ladder per type/day, transactional resource debit, idempotency and 06:00 MSK reset; amounts/currency deferred.
+- GH04-079 BUILD: own world-boss contribution scoring for damage, effective healing, buffs and prevented damage, with deduplication and anti-abuse; coefficients deferred.
+- GH04-080 BUILD: own automatic seasonal tower reward settlement, offline-safe inventory/mailbox credit, notifications, unique claim keys and audit/retry.
+- Approval records technical design only; no implementation, dependencies, integration, tests, server/game changes or APK builds authorized. Next: GDD-04 round 10 design.
