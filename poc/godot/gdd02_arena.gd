@@ -6,6 +6,8 @@ var health_bars: Array[MeshInstance3D] = []
 var action_until: Array[float] = []
 var action_names: Array[String] = []
 var pending_actions: Array[Array] = []
+var hero_models: Array[Node3D] = []
+var win_animation_played := false
 const ACTION_LENGTHS := {"Left_Slash":0.8, "Thrust_Slash":1.2, "Charged_Slash":1.8, "Hit_Reaction":0.4, "Dead":1.5, "Sword_Shout":2.0}
 var sim = Logic.new()
 var fighters: Array[Node3D] = []
@@ -31,12 +33,13 @@ func _ready() -> void:
     for team in range(2):
         for i in range(5):
             var unit := Node3D.new()
-            unit.position = Vector3((i - 2) * 1.8, 0, (team * 2 - 1) * 2.2)
+            unit.position = Vector3((i - 2) * 1.55, 0, (team * 2 - 1) * 2.5)
             add_child(unit)
             var hero_model: Node3D = HERO_SCENE.instantiate()
             hero_model.scale = Vector3.ONE * 0.85
             hero_model.rotation.y = PI if team == 1 else 0.0
             unit.add_child(hero_model)
+            hero_models.append(hero_model)
             var player := _find_animation_player(hero_model)
             if player != null:
                 animation_players.append(player)
@@ -63,8 +66,8 @@ func _ready() -> void:
             unit.add_child(agent)
             fighters.append(unit)
     camera = Camera3D.new()
-    camera.position = Vector3(0, 13, 15)
-    camera.rotation_degrees.x = -40
+    camera.position = Vector3(0, 10.5, 11.5)
+    camera.rotation_degrees.x = -39
     camera.current = true
     add_child(camera)
     var canvas := CanvasLayer.new()
@@ -142,17 +145,30 @@ func _consume_events() -> void:
     for event in sim.visual_events:
         var actor: int = event["actor"]
         var target: int = event["target"]
-        _play_action(actor, "Charged_Slash" if event["kind"] == "ultimate" else ("Left_Slash" if actor % 2 == 0 else "Thrust_Slash"))
-        var victim: Dictionary = sim.allies[target] if target < 5 else sim.enemies[target - 5]
-        if victim["hp"] <= 0:
-            _play_action(target, "Dead")
-        else:
-            _play_action(target, "Hit_Reaction")
+        if event["kind"] == "impact":
+            if event["fatal"]:
+                _play_action(target, "Dead")
+            else:
+                _play_action(target, "Hit_Reaction")
+        elif event["kind"] == "ultimate":
+            _play_action(actor, "Charged_Slash")
+        elif event["kind"] == "attack":
+            _play_action(actor, "Left_Slash" if actor % 2 == 0 else "Thrust_Slash")
     sim.visual_events.clear()
 
 func _process(delta: float) -> void:
     sim.step(delta)
     _consume_events()
+    if sim.finished and not win_animation_played:
+        win_animation_played = true
+        if sim.winner == "allies":
+            for i in range(5):
+                if sim.allies[i]["hp"] > 0:
+                    _play_action(i, "Sword_Shout")
+        elif sim.winner == "enemies":
+            for i in range(5,10):
+                if sim.enemies[i-5]["hp"] > 0:
+                    _play_action(i, "Sword_Shout")
     time_passed += delta
     ultimate_flash = maxf(0.0, ultimate_flash - delta)
     for i in range(fighters.size()):
@@ -178,12 +194,10 @@ func _process(delta: float) -> void:
             continue
         var destination := Vector3(fighter.position.x, 0, -0.9 if i < 5 else 0.9)
         fighter.position = fighter.position.move_toward(destination, delta * 1.3)
-        fighter.rotation.y = sin(time_passed * 3.5 + float(i)) * 0.12
-        fighter.position.y = absf(sin(time_passed * 5.0 + float(i))) * 0.045
+        fighter.rotation.y = 0.0
+        fighter.position.y = 0.0
     if ultimate_flash > 0:
-        camera.position.y = 13.0 + sin(time_passed * 30.0) * 0.15
+        camera.position.y = 10.5 + sin(time_passed * 30.0) * 0.10
     else:
-        camera.position.y = 13.0
+        camera.position.y = 10.5
     _refresh()
-HTTP/1.0 200 OK
-Server: SimpleHTTP/0.6 Python/3.14.4
