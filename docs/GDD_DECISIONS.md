@@ -68,3 +68,14 @@ Owner explicitly authorized transition to GDD-03 in accelerated design-first mod
 - FACTION-BONUS-001 C: faction synergies support flexible thresholds of 2 / 3 / 5 heroes of the same faction in the five-hero squad. Exact bonus magnitudes and interaction rules are deferred to development/balance.
 - TEAM-001 A: freely compose the five-hero squad from any owned heroes; no mandatory tank, support, or class quota. This is compatible with optional faction synergy bonuses.
 - Deferred implementation details: XP curves and caps, potion drops, skill upgrade costs, faction synergy effects and stacking, combat balancing and UI explanations. No code or APK during accelerated GDD.
+
+## GDD-03 - ROUND 4 APPROVED; DESIGN CLOSED (2026-11-22)
+- CAP-001 B: hero maximum level is 200.
+- RARITY-UP-001 B: heroes can increase rarity, subject to a limit determined by their starting rarity; exact rarity-to-rarity ceilings and upgrade recipes deferred to development.
+- RESET-001 C: hero progression reset is free up to a defined level, then costs ordinary in-game currency; threshold, currency amount, and refunded resources deferred to development.
+- COLLECTION-001 C: hero album/collection, achievements, and modest passive collection bonuses; bonus amounts and eligibility deferred to development.
+- All 16 GDD-03 design choices across four rounds approved. GDD-03 design phase CLOSED by owner direction; this does not certify implementation, testing, economy balance, or production readiness.
+- Development backlog: hero data models, 24-hero roster/faction and rarity assignment, six classes, summon/fragment/event/story acquisition and guarantees, N/R/SR/SSR/UR/Mythic rarity transitions and ceilings, duplicate conversions, six-star costs, XP to level 200, skill upgrade costs, free/paid reset threshold and refund rules, collection album/achievements/modest bonuses, 2/3/5 faction synergies, free five-hero squad, server authority, UI, balance, testing and GitHub technology review/approval before integration.
+
+## GDD-04 - IN DESIGN (2026-11-22)
+Scope: story campaign, quests, PvE. No choices approved yet. Accelerated design-first workflow: ask for owner choices, record decisions, defer implementation and technology integration.
