@@ -53,3 +53,11 @@ Owner explicitly authorized transition to GDD-03 in accelerated design-first mod
 - DUP-001 D: duplicate heroes support a hybrid system of star upgrades, fragments and exchange; precise conversion rates and rules are deferred to development/balance design.
 - Preserve GDD-01 roster target of 24 unique heroes at full release and GDD-02 six combat roles. These decisions do not specify rarity distribution, summon odds, currencies, caps or pricing; those remain undecided.
 - GDD-03 further rounds pending owner selection. No implementation, APK, or third-party integration during GDD without explicit request.
+
+## GDD-03 - ROUND 2 APPROVED (2026-11-22)
+- FACTION-001 C: four main factions plus two special factions. Faction names, affinities and bonuses are not yet specified.
+- ROSTER-001 B: among the 24 unique heroes planned for full release, most belong to the four main factions, with fewer rare heroes in the two special factions. Exact counts are deferred.
+- STAR-001 B: hero star progression capped at six stars. Star-upgrade costs and rarity-specific rules are deferred.
+- CLASS-002 A: each hero has one fixed combat class; no class switching. Preserve the six GDD-02 combat roles.
+- Development backlog: faction distribution and bonuses, rarity distribution, six-star economy and duplicate requirements, hero-specific class assignments and roster UI. No implementation or third-party integration during GDD without separate approval.
+- GDD-03 design remains open for the next concise round.
