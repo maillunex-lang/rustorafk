@@ -1,0 +1,17 @@
+# GDD-04 Round 8 GitHub research (2026-11-22)
+
+Approved design: TOWER-HP-001 B (percentage remaining total team HP after floor), SEASON-ANCHOR-001 B (global Monday 06:00 Europe/Moscow anchor every 28 days), SWEEP-ACCESS-001 B (first victory on repeatable PvE stages only), BOSS-ELIGIBILITY-001 C (validated minimum contribution OR meaningful active participation). Research/proposals only.
+
+## Technical candidates for separate owner approval
+- GH04-062 **STUDY** [CodingQuests/godot-multiplayer-starter](https://github.com/CodingQuests/godot-multiplayer-starter), MIT LICENSE verified, Godot 4 authoritative co-op starter with lobby/rounds/prediction. Study server event/action telemetry for active boss participation; ENet architecture is NOT compatible as drop-in replacement for approved Go authoritative backend; no integration. Reuse GH04-020 STUDY.
+- GH04-063 **STUDY** [Rubonnek/quest-manager](https://github.com/Rubonnek/quest-manager), MIT LICENSE verified, Godot 4.2.1+ quest progress/completion states; reference for first-clear and repeatable-stage sweep UI, not server-authoritative entitlement. Reuse GH04-017/028/046/053 STUDY.
+- GH04-064 **STUDY** [ShomyKohai/quest-system](https://github.com/ShomyKohai/quest-system), MIT LICENSE verified, Godot 4.4+ per README, quest conditions/progress reference for boss participation feedback and sweep unlock indicators; no duplicate quest framework integration. Reuse GH04-044 STUDY.
+- GH04-065 **STUDY** [go-co-op/gocron](https://github.com/go-co-op/gocron), MIT LICENSE verified, Go v2 scheduler alternative for anchored season wake-ups, reuse GH04-027 STUDY; not a replacement for existing robfig/cron ADAPT without owner choice.
+- GH04-066 **ADAPT** [robfig/cron](https://github.com/robfig/cron), MIT LICENSE verified, reuse GH04-026/036/057 ADAPT for Monday 06:00 Europe/Moscow season-check trigger. The 28-day calendar and first global anchor must be stored and validated by own PostgreSQL season records; cron does NOT implement every-fourth-Monday logic on its own.
+- GH04-067 **BUILD** own server-validated tower tie-break percent = remaining HP / sum max HP for entire submitted team, including defeated heroes as zero remaining, clamping/precision and deterministic rank snapshots. Exact rounding/health snapshots require owner decision; extends GH04-060.
+- GH04-068 **BUILD** own global 28-day season ID and immutable Monday 06:00 Moscow anchor, transactional rollover/recovery, independent permanent tower. First calendar date requires later approval; extends GH04-042/061.
+- GH04-069 **BUILD** own repeatable-PvE stage metadata, first-victory entitlement, server sweep validation, mode attempt/energy debit and identical eligible rewards; never sweep one-time story rewards. Extends GH04-050/059.
+- GH04-070 **BUILD** own boss contribution and meaningful activity evidence ledger, configurable minimum thresholds, anti-AFK and support/healing participation accounting, server-authoritative reward claims. Avoid unfair damage-only eligibility; thresholds deferred. Extends GH04-025/034.
+
+## Research verification and risk
+Six GitHub repositories inspected through connected GitHub READMEs and LICENSE files: all six MIT; no licenses for external art/assets evaluated. Godot mobile/Android tests not performed, compatibility not guaranteed. Server authority remains Go/PostgreSQL; Godot/ENet examples are reference-only. GH04-066 may use cron timezone support, but season boundaries and catch-up are custom. No game/server code, installs, tests, APK builds or integration.
