@@ -16,6 +16,11 @@ var sim = Logic.new()
 var fighters: Array[Node3D] = []
 var status: Label
 var detail: Label
+var performance_label: Label
+var perf_elapsed := 0.0
+var fps_min := 999.0
+var fps_sum := 0.0
+var fps_samples := 0
 var time_passed := 0.0
 var ultimate_flash := 0.0
 var camera: Camera3D
@@ -92,6 +97,9 @@ func _ready() -> void:
     panel.add_child(status)
     detail = Label.new()
     panel.add_child(detail)
+    performance_label = Label.new()
+    performance_label.add_theme_color_override("font_color", Color(0.9, 1.0, 0.6))
+    panel.add_child(performance_label)
     var button := Button.new()
     button.text = "ULTIMATE"
     button.pressed.connect(_ultimate)
@@ -190,6 +198,18 @@ func _spawn_impact(target: int, damage: int, fatal: bool) -> void:
     effect_total += 1
 
 func _process(delta: float) -> void:
+    perf_elapsed += delta
+    if perf_elapsed >= 1.0:
+        perf_elapsed = 0.0
+        var fps := float(Engine.get_frames_per_second())
+        fps_min = minf(fps_min, fps)
+        fps_sum += fps
+        fps_samples += 1
+        var ram_mb := float(OS.get_static_memory_usage()) / 1048576.0
+        var peak_mb := float(OS.get_static_memory_peak_usage()) / 1048576.0
+        var video_mb := float(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)) / 1048576.0
+        var objects := int(Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME))
+        performance_label.text = "FPS %d | min %d | avg %.1f | RAM %.1f MB | peak %.1f MB | VRAM %.1f MB | objects %d" % [int(fps), int(fps_min), fps_sum / float(fps_samples), ram_mb, peak_mb, video_mb, objects]
     for j in range(effect_nodes.size() - 1, -1, -1):
         effect_ttl[j] -= delta
         if effect_ttl[j] <= 0.0:
