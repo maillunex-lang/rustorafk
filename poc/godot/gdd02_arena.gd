@@ -23,6 +23,7 @@ var skill_feedback_ttl := 0.0
 var ultimate_button: Button
 var hud_cooldown_labels: Array[Label] = []
 var hud_ultimate_label: Label
+var hud_icons: Array[Control] = []
 var perf_elapsed := 0.0
 var fps_min := 999.0
 var fps_sum := 0.0
@@ -93,8 +94,8 @@ func _ready() -> void:
             bt.active = true
             fighters.append(unit)
     camera = Camera3D.new()
-    camera.position = Vector3(0, 10.5, 11.5)
-    camera.rotation_degrees.x = -39
+    camera.position = Vector3(0, 9.4, 10.0)
+    camera.rotation_degrees.x = -43
     camera.current = true
     add_child(camera)
     var phantom_host := Node.new()
@@ -136,7 +137,7 @@ func _ready() -> void:
     bottom.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
     bottom.offset_left = 14
     bottom.offset_right = -14
-    bottom.offset_top = -205
+    bottom.offset_top = -260
     bottom.offset_bottom = -18
     bottom.add_theme_constant_override("separation", 7)
     overlay.add_child(bottom)
@@ -151,16 +152,15 @@ func _ready() -> void:
     ability_row.add_theme_constant_override("separation", 10)
     bottom.add_child(ability_row)
     var names := ["GUARD", "STRIKE", "RECOVER", "ULTIMATE"]
-    var symbols := ["◆", "✦", "+", "★"]
     for i in range(4):
         var tile := VBoxContainer.new()
         tile.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         ability_row.add_child(tile)
         var skill_button := Button.new()
-        skill_button.custom_minimum_size = Vector2(112, 92)
+        skill_button.custom_minimum_size = Vector2(132, 136)
         skill_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-        skill_button.text = symbols[i] + "\n" + names[i]
-        skill_button.add_theme_font_size_override("font_size", 16)
+        skill_button.text = ""
+        skill_button.add_theme_font_size_override("font_size", 18)
         skill_button.add_theme_color_override("font_color", Color.WHITE)
         var normal := StyleBoxFlat.new()
         normal.bg_color = Color(0.11, 0.18, 0.30, 0.94) if i < 3 else Color(0.38, 0.22, 0.12, 0.96)
@@ -181,6 +181,20 @@ func _ready() -> void:
             skill_buttons.append(skill_button)
             skill_button.pressed.connect(_skill.bind(i))
         tile.add_child(skill_button)
+        var icon := Control.new()
+        icon.set_script(load("res://gdd02_skill_icon.gd"))
+        icon.skill_index = i
+        icon.custom_minimum_size = Vector2(94, 94)
+        icon.set_anchors_preset(Control.PRESET_CENTER)
+        icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        skill_button.add_child(icon)
+        hud_icons.append(icon)
+        var name_label := Label.new()
+        name_label.text = names[i]
+        name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        name_label.add_theme_font_size_override("font_size", 17)
+        name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        tile.add_child(name_label)
         var cooldown_label := Label.new()
         cooldown_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         cooldown_label.add_theme_font_size_override("font_size", 16)
@@ -243,8 +257,10 @@ func _refresh() -> void:
         var cooldown: float = sim.allies[0]["cooldowns"][i]
         skill_buttons[i].disabled = cooldown > 0.0 or sim.allies[0]["hp"] <= 0 or sim.finished
         hud_cooldown_labels[i].text = "%.1f s" % cooldown if cooldown > 0.0 else "READY"
+        hud_icons[i].set_cooldown(cooldown, sim.SKILL_COOLDOWNS[i], not skill_buttons[i].disabled)
     ultimate_button.disabled = sim.finished or sim.allies[0]["hp"] <= 0 or sim.allies[0]["cooldowns"][3] > 0.0
     hud_ultimate_label.text = "%.1f s" % sim.allies[0]["cooldowns"][3] if sim.allies[0]["cooldowns"][3] > 0.0 else "READY"
+    hud_icons[3].set_cooldown(sim.allies[0]["cooldowns"][3], sim.SKILL_COOLDOWNS[3], not ultimate_button.disabled)
 
 func _play_action(index: int, name: String) -> void:
     if index < 0 or index >= animation_players.size():
@@ -393,7 +409,7 @@ func _process(delta: float) -> void:
         fighter.rotation.y = 0.0
         fighter.position.y = 0.0
     if ultimate_flash > 0:
-        camera.position.y = 10.5 + sin(time_passed * 30.0) * 0.10
+        camera.position.y = 9.4 + sin(time_passed * 30.0) * 0.10
     else:
-        camera.position.y = 10.5
+        camera.position.y = 9.4
     _refresh()
