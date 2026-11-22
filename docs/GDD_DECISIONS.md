@@ -41,4 +41,10 @@ GDD-01 technology selections approved 2026-11-22:
 - ULT-001 A: ultimate effects occur directly on the arena; no separate cinematic.
 - PACE-001 B: target battle length 30-60 seconds.
 - FORM-001 B: freely arrange five pre-battle positions.
-- GDD-02 technology choices APPROVED 2026-11-22: AI-TECH-001 ADAPT LimboAI; MOVE-TECH-001 ADOPT NavigationAgent3D; SKILL-TECH-001 BUILD custom skills; CAM-TECH-001 ADAPT Phantom Camera; ANIM-TECH-001 ADOPT Godot humanoid retargeting/AnimationTree; FORM-TECH-001 BUILD formations and combat rules. Scope isolated PoC only. No GDD-03 before owner acceptance.
+- GDD-02 technology choices APPROVED 2026-11-22: AI-TECH-001 ADAPT LimboAI; MOVE-TECH-001 ADOPT NavigationAgent3D; SKILL-TECH-001 BUILD custom skills; CAM-TECH-001 ADAPT Phantom Camera; ANIM-TECH-001 ADOPT Godot humanoid retargeting/AnimationTree; FORM-TECH-001 BUILD formations and combat rules. Scope isolated PoC only. Owner authorized GDD-03 design transition 2026-11-22; implementation and final QA remain deferred.
+
+## GDD-02 design handoff (2026-11-22)
+Owner explicitly authorized transition to GDD-03 in accelerated design-first mode. GDD-02 design decisions and isolated Android prototype are retained; this is not final production implementation/QA acceptance. Deferred to development: automatic ordinary skills, balance, AnimationTree/retargeting, integration of GDD-01 addons, reproducible Meshy and native binary pipeline, extended Android QA.
+
+## GDD-03 - IN DESIGN (2026-11-22)
+Scope: heroes, collection, rarity and progression. Proposed decisions HERO-001, RARITY-001, LEVEL-001 and DUP-001 are awaiting owner choice; do not treat recommendations as approvals. No code or APK during GDD unless explicitly requested.
