@@ -98,3 +98,10 @@ Owner approved dispositions after round-1 GitHub research; these are architectur
 - GH04-007 BUILD: own chapter/stage definitions, unlocks and server-persisted campaign progression.
 - GH04-008 BUILD: own authoritative quest schedule, reset rules, reward validation, PvE state and co-op reward handling.
 Source review: docs/research/GDD-04_GITHUB_CANDIDATES.md. Next: GDD-04 round 2 design choices. No plugins installed, no integration, no APK.
+
+## GDD-04 - ROUND 2 APPROVED (2026-11-22)
+- UNLOCK-001 B: new chapters require both completion of the preceding chapter and a minimum level; precise level gate and whether it refers to account or heroes require subsequent specification, not assumed.
+- REPLAY-001 C: completed campaign battles can be replayed, with quick-battle/sweep available after victory; exact sweep limits, resource costs and reward eligibility remain undecided.
+- SCENE-001 A: story scenes use text dialogue with character portraits; do not assume 3D cutscenes or illustrated/3D character scene presentation.
+- REWARD-001 C: PvE rewards include resources, equipment, hero fragments and rare rewards; tables, drop rates, anti-abuse and mode eligibility deferred.
+- Next step: research GitHub implementations and submit separate GH04 round-2 candidate choices for owner approval. No implementation or dependency installation authorized.
