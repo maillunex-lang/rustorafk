@@ -33,6 +33,9 @@ Status: GDD-01 accepted; GDD-02 design approved and prototype preserved with rem
   - [ ] Restore GDD-01 addons and verify integrated project; document VPS-only Meshy asset/native binary reproducibility
   - [x] Exported signed 54 MB Android ARM64 APK with three skill test buttons, LimboAI and performance overlay\n  - [x] Exported signed Android ARM64 54 MB formation/navigation APK (gdd02-formation-navigation-arm64.apk)\n  - [x] Exported signed Android ARM64 54 MB six-role tactics APK (gdd02-six-roles-arm64.apk), device test pending\n  - [ ] Final production GDD-02 implementation/QA acceptance deferred to development phase; owner approved moving to GDD-03 design on 2026-11-22
 - [ ] GDD-03: heroes, collection, rarity, progression (design in progress; no implementation during GDD)
+  - [x] Round 1 owner approved 2026-11-22: HERO-001 D (summons/fragments/events/story), RARITY-001 C (N/R/SR/SSR/UR/Mythic), LEVEL-001 C (level/stars/skills/equipment), DUP-001 D (star upgrades/fragments/exchange)
+  - [ ] Round 2: hero factions, roster distribution, star progression, class flexibility (owner choice pending)
+  - [ ] Development backlog: summon odds and guarantees, duplicate conversion, resource costs, progression caps, rarity balance, hero collection UI, server authority, analytics and tests; no implementation during GDD
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
