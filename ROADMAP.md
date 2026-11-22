@@ -20,10 +20,10 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
   - [x] Manual ultimate and formation swap proof of concept
   - [ ] Restore GDD-01 Dialogue Manager/Inventory in full integrated project
   - [ ] LimboAI v1.8.1 GDExtension binaries and behavior trees, Android test
-  - [ ] Phantom Camera v0.11.0.3: addon and runtime camera host integrated, headless scene starts without errors, signed ARM64 APK exported; physical Android verification pending
+  - [ ] Phantom Camera v0.11.0.3: addon and runtime camera host integrated, headless scene starts without errors, signed ARM64 APK exported; physical Android verification accepted by owner: effects visible, camera comfortable, combat smooth
   - [ ] Ten Meshy humanoids with attacks, animation retargeting, FPS/RAM profiling (one existing animated Meshy GLB instantiated for 10 fighters in isolated VPS Android APK; running/stance animations and HP bars wired; device FPS/RAM still pending; Meshy asset remains VPS-only, not committed to GitHub)
   - [x] Godot 4.7.2 headless automatic battle test passed (5v5, HP, auto attacks, manual ultimate, win at 22.1s); 28 MB signed ARM64 battle preview APK built and owner confirmed smooth Android combat; 43 MB signed Meshy preview APK exported, device testing pending
-  - [x] Owner confirmed Meshy synced animations and 5v5 Android battle visuals are good\n  - [x] Added transient impact VFX, headless scene test and 52 MB signed Android ARM64 APK\n  - [ ] FPS/RAM profiling, LimboAI integration, Phantom Camera physical-device verification, owner final GDD-02 acceptance
+  - [x] Owner confirmed Meshy synced animations and 5v5 Android battle visuals are good\n  - [x] Added transient impact VFX, headless scene test and 52 MB signed Android ARM64 APK\n  - [x] Owner Android smoke test: impact flashes visible, Phantom Camera comfortable, combat remains smooth\n  - [ ] FPS/RAM profiling, LimboAI integration, Phantom Camera owner final GDD-02 acceptance
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
