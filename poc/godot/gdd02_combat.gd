@@ -53,26 +53,35 @@ func move_formation(from_slot: int, to_slot: int) -> bool:
 
 func use_skill(slot: int, skill: int) -> bool:
     if finished or slot < 0 or slot >= FORMATION_SLOTS or skill < 0 or skill > 2:
+        last_event = "Skill unavailable: battle ended or invalid slot"
         return false
     var hero: Dictionary = allies[slot]
-    if hero["hp"] <= 0 or hero["cooldowns"][skill] > 0.0:
+    if hero["hp"] <= 0:
+        last_event = "Skill unavailable: hero defeated"
+        return false
+    if hero["cooldowns"][skill] > 0.0:
+        last_event = "Skill cooling down: %.1fs" % hero["cooldowns"][skill]
         return false
     hero["cooldowns"][skill] = SKILL_COOLDOWNS[skill]
     var role: String = hero["role"]
     if skill == 0:
         hero["shield"] += int(ROLE_SHIELDS[role])
         visual_events.append({"kind":"shield", "actor":slot, "target":slot})
+        last_event = "GUARD: +%d shield (total %d)" % [int(ROLE_SHIELDS[role]), int(hero["shield"])]
     elif skill == 1:
         var target := _first_living(enemies)
         if target >= 0:
             _queue_hit(slot, 5 + target, int(ROLE_SKILL_DAMAGE[role]), "skill", 0.45)
             visual_events.append({"kind":"skill", "actor":slot, "target":5 + target})
+            last_event = "STRIKE: %d damage queued" % int(ROLE_SKILL_DAMAGE[role])
     else:
         var target := _lowest_hp_living(allies)
         if target >= 0:
             var teammate: Dictionary = allies[target]
-            teammate["hp"] = mini(int(teammate["max_hp"]), int(teammate["hp"]) + int(ROLE_HEALING[role]))
+            var before: int = teammate["hp"]
+            teammate["hp"] = mini(int(teammate["max_hp"]), before + int(ROLE_HEALING[role]))
             visual_events.append({"kind":"heal", "actor":slot, "target":target})
+            last_event = "RECOVER: hero %d +%d HP (now %d/%d)" % [target + 1, int(teammate["hp"]) - before, int(teammate["hp"]), int(teammate["max_hp"])]
     return true
 
 func _lowest_hp_living(team: Array[Dictionary]) -> int:
