@@ -10,11 +10,9 @@ func _tick(_delta: float) -> Status:
     if actor < 0:
         return FAILURE
     var enemies: Array[Dictionary] = arena.sim.enemies if actor < 5 else arena.sim.allies
-    var selected := -1
-    for i in range(enemies.size()):
-        if enemies[i]["hp"] > 0:
-            selected = i
-            break
+    var team: Array[Dictionary] = arena.sim.allies if actor < 5 else arena.sim.enemies
+    var role: String = team[actor % 5]["role"]
+    var selected: int = arena.sim.select_target(role, enemies)
     if selected < 0:
         return FAILURE
     blackboard.set_var(&"target_index", selected)
