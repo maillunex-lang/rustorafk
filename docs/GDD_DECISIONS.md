@@ -157,3 +157,10 @@ Owner explicitly approved technical dispositions, for future planning only:
 - GH04-033 BUILD: own transactional daily free attempts and in-game-resource extra dungeon entries, with idempotency/refunds.
 - GH04-034 BUILD: own world-boss participation/contribution/ranking reward validation and separate co-op claims.
 - Research record: docs/research/GDD-04_ROUND-4_GITHUB_CANDIDATES.md. No installation, integration, tests, APK or server/game code changes authorized. Next: GDD-04 round 5 design choices.
+
+## GDD-04 - ROUND 5 APPROVED (2026-11-22)
+- CHAPTER-LEVEL-001 B: unlock next chapter only when previous chapter completed AND account level meets a chapter-specific minimum. Exact level thresholds deferred.
+- DUNGEON-LIMIT-001 B: three free daily attempts for EACH of the four resource dungeon types (gold, XP, equipment, materials); additional resource-paid entries remain as approved in DUNGEON-ENTRY-001 B. Purchase caps/costs deferred.
+- TOWER-SEASON-001 C: seasonal tower cycle lasts 28 days; permanent tower progress and one-time rewards are unaffected. Season alignment and rollover timing deferred.
+- DIFFICULTY-001 C: PvE difficulty escalates through enemy stats, new enemy abilities and special stage conditions, not just stat inflation; exact curves, skill unlocks and modifiers deferred.
+- Next: GitHub research for each mechanic, propose GH04 round-5 technical candidates for separate owner approval. No implementation or integration authorized.
