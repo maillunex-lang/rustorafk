@@ -86,3 +86,15 @@ Scope: story campaign, quests, PvE. Round 1 approved below; later rounds pending
 - QUEST-001 D: story, daily, weekly, event and hero-specific quests. Hero-specific quests do not by themselves imply separate hero story campaigns.
 - PVE-001 D: hybrid PvE includes a challenge tower, resource/boss dungeons, world bosses and cooperative play. Multiplayer architecture and release phasing deferred.
 - Implementation backlog: chapter/quest content, mission tracking and rewards, repeatability/reset cadence, PvE difficulty and matchmaking, authoritative progression, live events, boss balance, localization, QA. No code or APK during GDD.
+
+## GDD-04 - TECHNICAL CANDIDATES APPROVED (2026-11-22)
+Owner approved dispositions after round-1 GitHub research; these are architecture/planning choices, NOT permission to integrate during GDD:
+- GH04-001 ADAPT: TheWalruzz/godot-questify for Godot quest authoring/client presentation; authoritative validation remains server-side.
+- GH04-002 STUDY: Chevifier/QuestManager as alternative/reference only; verify license text and compatibility before any further proposal.
+- GH04-003 ADOPT: nathanhoad/godot_dialogue_manager for story dialogues; reiterates conditional GDD-01 TECH-001 selection, with Godot/Android verification still pending.
+- GH04-004 STUDY: gdquest-demos/godot-4-pcg-basic-dungeon, with source/art license distinctions.
+- GH04-005 STUDY: CodingQuests/godot-multiplayer-starter, server-authoritative co-op reference, not a replacement for planned Go server.
+- GH04-006 STUDY: tngklp/godot-multiplayer-lobby-system, lobby reference only.
+- GH04-007 BUILD: own chapter/stage definitions, unlocks and server-persisted campaign progression.
+- GH04-008 BUILD: own authoritative quest schedule, reset rules, reward validation, PvE state and co-op reward handling.
+Source review: docs/research/GDD-04_GITHUB_CANDIDATES.md. Next: GDD-04 round 2 design choices. No plugins installed, no integration, no APK.
