@@ -1,5 +1,8 @@
 extends Node3D
 const Logic = preload("res://gdd02_combat.gd")
+const HERO_SCENE = preload("res://assets/kaeron_animated.glb")
+var animation_players: Array[AnimationPlayer] = []
+var health_bars: Array[MeshInstance3D] = []
 var sim = Logic.new()
 var fighters: Array[Node3D] = []
 var status: Label
@@ -26,18 +29,28 @@ func _ready() -> void:
             var unit := Node3D.new()
             unit.position = Vector3((i - 2) * 1.8, 0, (team * 2 - 1) * 2.2)
             add_child(unit)
-            var torso := MeshInstance3D.new()
-            torso.mesh = CapsuleMesh.new()
-            torso.position.y = 1.1
-            var mat := StandardMaterial3D.new()
-            mat.albedo_color = Color(0.25, 0.65, 1.0) if team == 0 else Color(0.95, 0.35, 0.42)
-            torso.material_override = mat
-            unit.add_child(torso)
-            var head := MeshInstance3D.new()
-            head.mesh = SphereMesh.new()
-            head.scale = Vector3(0.35, 0.35, 0.35)
-            head.position.y = 2.1
-            unit.add_child(head)
+            var hero_model: Node3D = HERO_SCENE.instantiate()
+            hero_model.scale = Vector3.ONE * 0.85
+            hero_model.rotation.y = PI if team == 1 else 0.0
+            unit.add_child(hero_model)
+            var player := _find_animation_player(hero_model)
+            if player != null:
+                animation_players.append(player)
+                if player.has_animation("Running"):
+                    player.play("Running")
+                elif player.has_animation("Walking"):
+                    player.play("Walking")
+            var hp_back := MeshInstance3D.new()
+            var hp_mesh := BoxMesh.new()
+            hp_mesh.size = Vector3(0.95, 0.10, 0.07)
+            hp_back.mesh = hp_mesh
+            hp_back.position.y = 2.15
+            var hp_material := StandardMaterial3D.new()
+            hp_material.albedo_color = Color(0.18, 0.85, 0.3) if team == 0 else Color(1.0, 0.25, 0.25)
+            hp_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+            hp_back.material_override = hp_material
+            unit.add_child(hp_back)
+            health_bars.append(hp_back)
             var agent := NavigationAgent3D.new()
             agent.avoidance_enabled = false
             unit.add_child(agent)
@@ -65,6 +78,15 @@ func _ready() -> void:
     arrange.pressed.connect(_swap)
     panel.add_child(arrange)
     _refresh()
+
+func _find_animation_player(node: Node) -> AnimationPlayer:
+    if node is AnimationPlayer:
+        return node as AnimationPlayer
+    for child in node.get_children():
+        var found := _find_animation_player(child)
+        if found != null:
+            return found
+    return null
 
 func _ultimate() -> void:
     if sim.manual_ultimate(0):
@@ -98,6 +120,14 @@ func _process(delta: float) -> void:
         var fighter := fighters[i]
         var hero: Dictionary = sim.allies[i] if i < 5 else sim.enemies[i - 5]
         fighter.visible = hero["hp"] > 0
+        if i < health_bars.size():
+            health_bars[i].scale.x = maxf(0.02, float(hero["hp"]) / float(hero["max_hp"]))
+        if i < animation_players.size() and fighter.visible:
+            var ap := animation_players[i]
+            var moving := fighter.position.z < -1.0 if i < 5 else fighter.position.z > 1.0
+            var desired := "Running" if moving else "Combat_Stance"
+            if ap.has_animation(desired) and ap.current_animation != desired:
+                ap.play(desired, 0.15)
         if not fighter.visible:
             continue
         var destination := Vector3(fighter.position.x, 0, -0.9 if i < 5 else 0.9)
