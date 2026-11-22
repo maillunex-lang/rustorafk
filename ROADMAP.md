@@ -67,7 +67,9 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [x] Round 9 owner approved 2026-11-22: CHAPTER-GATE-001 B (configurable per-chapter account-level gates), DUNGEON-PRICE-001 B (escalating three-purchase ladder), BOSS-SUPPORT-001 C (damage/effective healing/buffs/prevented damage), SEASON-CLAIM-001 B (automatic server reward settlement and notification)
   - [x] GitHub research after round 9: [GDD-04 round-9 candidates](docs/research/GDD-04_ROUND-9_GITHUB_CANDIDATES.md), GH04-071…080 proposed for separate technical approval
   - [x] Technical approval 2026-11-22: GH04-071 STUDY, GH04-072 STUDY, GH04-073 STUDY, GH04-074 STUDY, GH04-075 STUDY, GH04-076 ADAPT, GH04-077 BUILD, GH04-078 BUILD, GH04-079 BUILD, GH04-080 BUILD; implementation not authorized
-  - [ ] Round 10 design: remaining GDD-04 progression and reward rules (owner choices pending; GitHub research after approval)
+  - [x] Round 10 approved 2026-11-22: XP-DECAY-001 B (three full-repeat XP awards then progressive nonzero floor), DUNGEON-CURRENCY-001 B (ordinary earnable currency), BOSS-REWARD-TIER-001 C (participation base + contribution/rank), TOWER-REWARD-001 B (seasonal floor milestones + leaderboard rewards)
+  - [x] GitHub research after round 10: [GDD-04 round-10 candidates](docs/research/GDD-04_ROUND-10_GITHUB_CANDIDATES.md), GH04-081…090 proposed for separate technical approval
+  - [ ] Technical approval GH04-081…090 pending; no implementation and no advance to next GDD round until approved
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset time/time zone, permanent and seasonal tower state, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
