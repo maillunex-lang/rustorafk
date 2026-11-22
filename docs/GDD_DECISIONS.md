@@ -105,3 +105,15 @@ Source review: docs/research/GDD-04_GITHUB_CANDIDATES.md. Next: GDD-04 round 2 d
 - SCENE-001 A: story scenes use text dialogue with character portraits; do not assume 3D cutscenes or illustrated/3D character scene presentation.
 - REWARD-001 C: PvE rewards include resources, equipment, hero fragments and rare rewards; tables, drop rates, anti-abuse and mode eligibility deferred.
 - Next step: research GitHub implementations and submit separate GH04 round-2 candidate choices for owner approval. No implementation or dependency installation authorized.
+
+## GDD-04 - ROUND 2 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved the following planning dispositions after the round-2 GitHub research; no integration, tests, or code changes are authorized:
+- GH04-009 ADAPT: adapt previously approved Dialogue Manager for portrait-and-text story presentation.
+- GH04-010 STUDY: PieKing1215/godot-loot-tables, WIP editor-facing loot tables reference; never trust client RNG for server rewards.
+- GH04-011 STUDY: CodingQuests/godot-save-system for local settings/cache patterns only; authoritative account state remains server-side.
+- GH04-012 STUDY: TommyKooij/SaveSystem as alternative local save reference only.
+- GH04-013 BUILD: own server-side campaign chapter gate, prior-chapter completion plus minimum level; precise level type/threshold remain undecided.
+- GH04-014 BUILD: own server-validated replay/sweep eligibility, atomic resource/reward handling and abuse protection.
+- GH04-015 BUILD: own authoritative PvE loot tables, drops, fragments and idempotent grants.
+- GH04-016 BUILD: own portrait/text UI presentation on the approved Dialogue Manager runtime; no 3D cutscenes.
+- Research record: docs/research/GDD-04_ROUND-2_GITHUB_CANDIDATES.md. Next: GDD-04 round 3 design. Implementation deferred until separately authorized.
