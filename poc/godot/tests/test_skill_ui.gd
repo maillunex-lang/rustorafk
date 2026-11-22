@@ -8,6 +8,7 @@ func _run() -> void:
     root.add_child(arena)
     await process_frame
     assert(arena.skill_buttons.size() == 3)
+    arena._start_battle()
     for hero in arena.sim.allies:
         hero["attack_timer"] = 100.0
     for hero in arena.sim.enemies:
