@@ -177,3 +177,10 @@ Owner explicitly approved these planning dispositions after round-5 GitHub resea
 - GH04-042 BUILD: own 28-day seasonal tower cycle, rankings/rewards/rollover without affecting permanent tower.
 - GH04-043 BUILD: own data-driven PvE difficulty scaling with stats, abilities and stage conditions.
 - Research: docs/research/GDD-04_ROUND-5_GITHUB_CANDIDATES.md. No code changes, dependency installation, integration, tests or APK builds authorized. Next: GDD-04 round 6 design choices.
+
+## GDD-04 - ROUND 6 APPROVED (2026-11-22)
+- ACCOUNT-XP-001 C: account XP comes from campaign, quests and PvE activities, with anti-farm limits. Exact XP amounts, eligible events and caps deferred.
+- SWEEP-001 B: quick/sweep battles available after first victory and consume attempts or energy belonging to that mode. Sweep reward eligibility and mode exceptions deferred; no new universal energy system is implied.
+- DUNGEON-EXTRA-001 C: up to three extra entries per resource dungeon type each day, with increasing cost per purchase; free three per type remain unchanged. Resource denomination and cost curve deferred.
+- TOWER-RANK-001 B: seasonal tower ranks by highest cleared floor, with battle result as a secondary tie-breaker. Definition of battle result, remaining tie-breakers and season snapshot rules deferred.
+- Next: research GitHub for each mechanic and seek separate owner approval of GH04 round-6 technical proposals. No implementation authorized.
