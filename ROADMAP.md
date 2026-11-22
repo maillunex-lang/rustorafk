@@ -40,8 +40,8 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [x] Round 1 owner approved 2026-11-22: STORY-001 A (linear chapters), CAMPAIGN-001 B (20–30 battles + scenes per chapter), QUEST-001 D (story/daily/weekly/event/hero quests), PVE-001 D (tower/dungeons/world bosses/co-op)
   - [x] GitHub research after round 1: [GDD-04 GitHub candidates](docs/research/GDD-04_GITHUB_CANDIDATES.md); GH04-001…008 researched and owner-approved for planning\n  - [x] Technical approval 2026-11-22: GH04-001 ADAPT, GH04-002 STUDY, GH04-003 ADOPT, GH04-004 STUDY, GH04-005 STUDY, GH04-006 STUDY, GH04-007 BUILD, GH04-008 BUILD; no implementation authorized\n  - [x] Round 2 owner approved 2026-11-22: UNLOCK-001 B (previous chapter + minimum level), REPLAY-001 C (replay + quick battle after win), SCENE-001 A (text + portraits), REWARD-001 C (resources/equipment/fragments/rare rewards)
   - [x] GitHub research after round 2: [GDD-04 round-2 candidates](docs/research/GDD-04_ROUND-2_GITHUB_CANDIDATES.md), GH04-009…016 proposed for separate technical approval
-  - [ ] Technical approval for GH04-009…016 pending owner selection; no integration authorized
-  - [ ] Round 3: quest resets, tower and dungeon progression, world boss and co-op access (after technical approval)
+  - [x] Technical approval 2026-11-22: GH04-009 ADAPT, GH04-010 STUDY, GH04-011 STUDY, GH04-012 STUDY, GH04-013 BUILD, GH04-014 BUILD, GH04-015 BUILD, GH04-016 BUILD; implementation deferred
+  - [ ] Round 3: quest resets, tower and dungeon progression, world boss and co-op access (owner choice pending)
   - [ ] Development backlog: chapter scripts, quest content and reward tables, minimum-level gate type/threshold, replay/sweep limits and idempotency, portrait UI, reset rules, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
