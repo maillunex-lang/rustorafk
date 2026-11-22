@@ -8,6 +8,9 @@ var action_names: Array[String] = []
 var pending_actions: Array[Array] = []
 var hero_models: Array[Node3D] = []
 var win_animation_played := false
+var effect_ttl: Array[float] = []
+var effect_nodes: Array[MeshInstance3D] = []
+var effect_total := 0
 const ACTION_LENGTHS := {"Left_Slash":0.8, "Thrust_Slash":1.2, "Charged_Slash":1.8, "Hit_Reaction":0.4, "Dead":1.5, "Sword_Shout":2.0}
 var sim = Logic.new()
 var fighters: Array[Node3D] = []
@@ -70,6 +73,16 @@ func _ready() -> void:
     camera.rotation_degrees.x = -39
     camera.current = true
     add_child(camera)
+    var phantom_host := Node.new()
+    phantom_host.set_script(load("res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd"))
+    phantom_host.name = "PhantomCameraHost"
+    camera.add_child(phantom_host)
+    var phantom := Node3D.new()
+    phantom.set_script(load("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd"))
+    phantom.name = "PhantomCamera3D"
+    phantom.position = camera.position
+    phantom.rotation = camera.rotation
+    add_child(phantom)
     var canvas := CanvasLayer.new()
     add_child(canvas)
     var panel := VBoxContainer.new()
@@ -146,17 +159,46 @@ func _consume_events() -> void:
         var actor: int = event["actor"]
         var target: int = event["target"]
         if event["kind"] == "impact":
+            _spawn_impact(target, event["damage"], event["fatal"])
             if event["fatal"]:
                 _play_action(target, "Dead")
             else:
                 _play_action(target, "Hit_Reaction")
         elif event["kind"] == "ultimate":
+            _spawn_impact(target, 65, false)
             _play_action(actor, "Charged_Slash")
         elif event["kind"] == "attack":
             _play_action(actor, "Left_Slash" if actor % 2 == 0 else "Thrust_Slash")
     sim.visual_events.clear()
 
+func _spawn_impact(target: int, damage: int, fatal: bool) -> void:
+    if target < 0 or target >= fighters.size():
+        return
+    var spark := MeshInstance3D.new()
+    var sphere := SphereMesh.new()
+    sphere.radius = 0.22 if not fatal else 0.38
+    sphere.height = sphere.radius * 2.0
+    spark.mesh = sphere
+    var mat := StandardMaterial3D.new()
+    mat.albedo_color = Color(1.0, 0.78, 0.18) if not fatal else Color(1.0, 0.2, 0.3)
+    mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+    spark.material_override = mat
+    spark.position = fighters[target].global_position + Vector3(0, 1.2, 0)
+    add_child(spark)
+    effect_nodes.append(spark)
+    effect_ttl.append(0.24)
+    effect_total += 1
+
 func _process(delta: float) -> void:
+    for j in range(effect_nodes.size() - 1, -1, -1):
+        effect_ttl[j] -= delta
+        if effect_ttl[j] <= 0.0:
+            effect_nodes[j].queue_free()
+            effect_nodes.remove_at(j)
+            effect_ttl.remove_at(j)
+        else:
+            effect_nodes[j].scale = Vector3.ONE * (0.4 + (0.24 - effect_ttl[j]) * 2.5)
+
     sim.step(delta)
     _consume_events()
     if sim.finished and not win_animation_played:
