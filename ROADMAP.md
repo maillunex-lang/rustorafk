@@ -19,7 +19,7 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
   - [x] Built-in NavigationAgent3D present on all 10 proxy fighters; actual navigation movement pending
   - [x] Manual ultimate and formation swap proof of concept
   - [ ] Restore GDD-01 Dialogue Manager/Inventory in full integrated project
-  - [ ] LimboAI v1.8.1 GDExtension binaries and behavior trees, Android test
+  - [ ] LimboAI v1.8.1 GDExtension: Linux + Android ARM64 debug binaries compiled; BTPlayer target selection on all 10 fighters; headless 10/10 tree test passed; signed 54 MB APK built with arm64 .so; physical Android test pending
   - [ ] Phantom Camera v0.11.0.3: addon and runtime camera host integrated, headless scene starts without errors, signed ARM64 APK exported; physical Android verification accepted by owner: effects visible, camera comfortable, combat smooth
   - [ ] Ten Meshy humanoids with attacks, animation retargeting, FPS/RAM profiling (one existing animated Meshy GLB instantiated for 10 fighters in isolated VPS Android APK; running/stance animations and HP bars wired; device FPS/RAM still pending; Meshy asset remains VPS-only, not committed to GitHub)
   - [x] Godot 4.7.2 headless automatic battle test passed (5v5, HP, auto attacks, manual ultimate, win at 22.1s); 28 MB signed ARM64 battle preview APK built and owner confirmed smooth Android combat; 43 MB signed Meshy preview APK exported, device testing pending
