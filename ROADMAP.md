@@ -52,3 +52,6 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
 - [ ] GDD-11: production milestones, QA, beta, launch
 
 For each remaining GDD round: owner chooses concise design decisions -> record in GitHub -> GitHub research/license and compatibility pre-review -> propose ADOPT/ADAPT/BUILD/STUDY -> separate owner approval -> record technical decisions -> next design round. Actual integration and tests are deferred to development; no third-party integration without explicit approval.
+
+## Mandatory GDD research and approval gate (owner reaffirmed 2026-11-22)
+For EVERY approved GDD design round, without needing a repeated reminder: (1) record approved mechanics in docs/GDD_DECISIONS.md and ROADMAP.md; (2) research GitHub for EACH approved mechanic, inspecting candidate repositories, documentation, licensing, Godot/Android compatibility and risks; (3) prepare concrete GH candidate IDs and recommended ADOPT/ADAPT/STUDY/BUILD dispositions; (4) request SEPARATE owner technical approval; (5) record approved technical choices in both files; (6) only then proceed to the next GDD round. No integration, dependency installation, game/server changes, APK builds or implementation during GDD unless the owner explicitly authorizes them. If research is unavailable, report the gap and do not silently skip it.
