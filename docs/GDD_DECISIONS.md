@@ -164,3 +164,16 @@ Owner explicitly approved technical dispositions, for future planning only:
 - TOWER-SEASON-001 C: seasonal tower cycle lasts 28 days; permanent tower progress and one-time rewards are unaffected. Season alignment and rollover timing deferred.
 - DIFFICULTY-001 C: PvE difficulty escalates through enemy stats, new enemy abilities and special stage conditions, not just stat inflation; exact curves, skill unlocks and modifiers deferred.
 - Next: GitHub research for each mechanic, propose GH04 round-5 technical candidates for separate owner approval. No implementation or integration authorized.
+
+## GDD-04 - ROUND 5 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved these planning dispositions after round-5 GitHub research:
+- GH04-035 STUDY: hatchet-dev/pgoutbox transactional outbox reference for durable Go/PostgreSQL progress/reward events; no dependency installation.
+- GH04-036 ADAPT: reuse approved robfig/cron v3 for 28-day season boundary checks; exact 28-day periods and idempotent rollover must be anchored in database, not inferred from cron alone.
+- GH04-037 ADAPT: reuse approved LimboAI behavior trees/state machines for enemy abilities, phases and stage modifiers; Android compatibility testing deferred.
+- GH04-038 STUDY: CodingQuests/godot-enemy-ai, 2D enemy telegraphs and patterns reference only.
+- GH04-039 STUDY: CodingQuests/godot-state-machine, 2D state transition reference only; no replacement of LimboAI.
+- GH04-040 BUILD: own authoritative chapter gates using account level and previous chapter completion.
+- GH04-041 BUILD: own three free daily entries per resource dungeon type, with atomic claims/reset and optional paid entries.
+- GH04-042 BUILD: own 28-day seasonal tower cycle, rankings/rewards/rollover without affecting permanent tower.
+- GH04-043 BUILD: own data-driven PvE difficulty scaling with stats, abilities and stage conditions.
+- Research: docs/research/GDD-04_ROUND-5_GITHUB_CANDIDATES.md. No code changes, dependency installation, integration, tests or APK builds authorized. Next: GDD-04 round 6 design choices.
