@@ -1,0 +1,17 @@
+# GDD-04 Round 3 GitHub research and candidates (2026-11-22)
+
+Approved design: DAILY-001 B (one configured server reset), TOWER-001 C (permanent tower + seasonal tower), DUNGEON-001 B (separate gold/XP/equipment/materials dungeons), BOSS-001 C (world boss damage ranking plus separate co-op fights). Research and planning ONLY; no integration authorization.
+
+## Candidates for separate owner approval
+- GH04-017 **STUDY** [Rubonnek/quest-manager](https://github.com/Rubonnek/quest-manager): hierarchical quest states, conditions, signals, serialization; Godot 4.2.1+ per README, MIT LICENSE verified. Reference for daily/weekly quest display and state transitions; do not replace already-approved Questify GH04-001 or trust client reset timestamps.
+- GH04-018 **STUDY** [RyosukeMondo/snap-dungeon-v2](https://github.com/RyosukeMondo/snap-dungeon-v2): Godot 4.6 portrait mobile daily seeded runs and floors, MIT source LICENSE verified. Reference for repeatable tower/floor run progression, not direct combat or art reuse; inspect third-party art attribution and Firebase coupling before reuse.
+- GH04-019 **STUDY** [Drejzer/FloorArchitect](https://github.com/Drejzer/FloorArchitect): Godot 4 room/floor layout algorithms, MIT-style LICENSE.md verified. Optional reference only; resource dungeons were approved as distinct reward modes, NOT procedural exploration, so no automatic generator integration.
+- GH04-020 **STUDY** [CodingQuests/godot-multiplayer-starter](https://github.com/CodingQuests/godot-multiplayer-starter): Godot 4.7+ server-authoritative co-op, ready lobby, validation and ENet; README reports 4.7.2 Windows testing; MIT LICENSE verified. Study state sync/ready flows; not a replacement for project's planned Go authoritative backend or proof of Android compatibility.
+- GH04-021 **STUDY** [tngklp/godot-multiplayer-lobby-system](https://github.com/tngklp/godot-multiplayer-lobby-system): Godot 4.6 ENet lobbies, host transfer, ready states; MIT-style LICENSE verified. Alternative co-op lobby reference; avoid introducing peer-host authority.
+- GH04-022 **BUILD** own Go-server scheduler with unified configured reset epoch/time zone, daily/weekly quest instances, idempotent rollover, catch-up on downtime and event exception handling. Exact reset time remains undecided.
+- GH04-023 **BUILD** own server tower state: persistent floor progression and independently versioned seasonal tower/leaderboard/reset/rewards; no forced reset of permanent progress.
+- GH04-024 **BUILD** data-driven gold, XP, equipment and materials dungeon definitions with difficulty/entry/reward configs and authoritative claims, reusing GH04-015 reward grant.
+- GH04-025 **BUILD** world-boss shared HP/damage ranking and separate cooperative sessions, authoritative participation/damage validation, matchmaking and anti-abuse; real-time versus asynchronous boss resolution remains open.
+
+## Constraints and checks
+GitHub candidate repos inspected by connected GitHub README and LICENSE files. MIT verification refers to the specific LICENSE files inspected; artwork and bundled third-party assets may carry separate terms. No repo was cloned, installed or tested. Godot 4.7.2/Android production compatibility unverified. Technical recommendations do not constitute approved decisions. Existing GH04-005/006 STUDY and GH04-008 BUILD remain valid; this round refines scope. Owner must approve GH04-017..025 separately.
