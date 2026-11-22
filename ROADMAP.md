@@ -15,15 +15,19 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
 - [x] GDD-02: combat, roles, skills, battle pacing (owner approved gameplay decisions)
 - [x] GDD-02-R: GitHub candidate research and preliminary licensing/compatibility review
 - [x] GDD-02-T: owner approved AI adapt, movement adopt, skills build, camera adapt, animation adopt, formation build
-- [ ] GDD-02-P: isolated PoC PARTIAL (custom 5v5 logic tested; 10 humanoid proxy scene headless startup tested; clean ARM64 APK exported and signature verified; previous battle previews owner-accepted as smooth; Phantom Camera headless scene integration done, new APK device test pending; LimboAI pending)
-  - [x] Built-in NavigationAgent3D present on all 10 proxy fighters; actual navigation movement pending
-  - [x] Manual ultimate and formation swap proof of concept
-  - [ ] Restore GDD-01 Dialogue Manager/Inventory in full integrated project
-  - [ ] LimboAI v1.8.1 GDExtension: Linux + Android ARM64 debug binaries compiled; BTPlayer target selection on all 10 fighters; headless 10/10 tree test passed; signed 54 MB APK built with arm64 .so; physical Android test pending
-  - [ ] Phantom Camera v0.11.0.3: addon and runtime camera host integrated, headless scene starts without errors, signed ARM64 APK exported; physical Android verification accepted by owner: effects visible, camera comfortable, combat smooth
-  - [ ] Ten Meshy humanoids with attacks, animation retargeting, FPS/RAM profiling (one existing animated Meshy GLB instantiated for 10 fighters in isolated VPS Android APK; running/stance animations and HP bars wired; device FPS/RAM still pending; Meshy asset remains VPS-only, not committed to GitHub)
-  - [x] Godot 4.7.2 headless automatic battle test passed (5v5, HP, auto attacks, manual ultimate, win at 22.1s); 28 MB signed ARM64 battle preview APK built and owner confirmed smooth Android combat; 43 MB signed Meshy preview APK exported, device testing pending
-  - [x] Owner confirmed Meshy synced animations and 5v5 Android battle visuals are good\n  - [x] Added transient impact VFX, headless scene test and 52 MB signed Android ARM64 APK\n  - [x] Owner Android smoke test: impact flashes visible, Phantom Camera comfortable, combat remains smooth\n  - [ ] FPS/RAM profiling, LimboAI integration, Phantom Camera owner final GDD-02 acceptance
+- [ ] GDD-02-P: isolated Android PoC functional and owner-tested; final feature acceptance NOT yet granted. Detailed audit: [GDD-02 gap audit](docs/audits/GDD-02_GAP_AUDIT_2026-11-22.md)
+  - [x] 5v5 auto combat, manual ultimate, synchronized Meshy animations, impact VFX, death/victory animations
+  - [x] LimboAI v1.8.1 compiled for Linux and Android ARM64; 10 BTPlayer target selectors verified headless and APK tested on Android
+  - [x] Phantom Camera integrated; Android owner confirms comfortable view and smooth combat
+  - [x] Android snapshot: FPS 121 / min 98 / avg 120.0, Godot RAM 38.1 MB / peak 63.6 MB, VRAM 90.8 MB (one run/device; not full Android RSS)
+  - [ ] Fix ultimate-damage test: current HP assertion can pass without damage; add deterministic combat tests
+  - [ ] Implement three ordinary skills + cooldown/effect rules and meaningful six-class behavior
+  - [ ] Replace single swap button with full five-slot formation editor
+  - [ ] Connect NavigationAgent3D to actual navigation movement
+  - [ ] Validate AnimationTree and humanoid retargeting on distinct Meshy rigs
+  - [ ] Extend LimboAI tactical behavior beyond first-living target selection
+  - [ ] Restore GDD-01 addons and verify integrated project; document VPS-only Meshy asset/native binary reproducibility
+  - [ ] Repeat Android QA and obtain explicit owner final GDD-02 acceptance
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
