@@ -20,14 +20,14 @@ Status: GDD-01 accepted; GDD-02 game design and technologies approved; isolated 
   - [x] LimboAI v1.8.1 compiled for Linux and Android ARM64; 10 BTPlayer target selectors verified headless and APK tested on Android
   - [x] Phantom Camera integrated; Android owner confirms comfortable view and smooth combat
   - [x] Android snapshot: FPS 121 / min 98 / avg 120.0, Godot RAM 38.1 MB / peak 63.6 MB, VRAM 90.8 MB (one run/device; not full Android RSS)
-  - [ ] Fix ultimate-damage test: current HP assertion can pass without damage; add deterministic combat tests
-  - [ ] Implement three ordinary skills + cooldown/effect rules and meaningful six-class behavior
+  - [x] Fixed ultimate-damage test: checks delayed 65 damage and impact event; automated battle still passes at 46.9 seconds
+  - [ ] Three ordinary skills implemented in combat domain and hero-1 test UI (guard shield, strike damage, recover heal), cooldowns and six-role numeric parameters; full class-specific AI skill use and balance still pending
   - [ ] Replace single swap button with full five-slot formation editor
   - [ ] Connect NavigationAgent3D to actual navigation movement
   - [ ] Validate AnimationTree and humanoid retargeting on distinct Meshy rigs
   - [ ] Extend LimboAI tactical behavior beyond first-living target selection
   - [ ] Restore GDD-01 addons and verify integrated project; document VPS-only Meshy asset/native binary reproducibility
-  - [ ] Repeat Android QA and obtain explicit owner final GDD-02 acceptance
+  - [x] Exported signed 54 MB Android ARM64 APK with three skill test buttons, LimboAI and performance overlay\n  - [ ] Repeat Android QA and obtain explicit owner final GDD-02 acceptance
 - [ ] GDD-03: heroes, collection, rarity, progression + research/approval
 - [ ] GDD-04: campaign, quests, PvE + research/approval
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
