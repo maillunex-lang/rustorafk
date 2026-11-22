@@ -286,3 +286,17 @@ Owner approved the following technical planning dispositions from docs/research/
 - BOSS-RANK-REWARD-001 C: world boss bonus rewards are allocated by percentile groups top 1%, 5%, 20%, 50%, in addition to the guaranteed eligible participation reward. Exact tie handling, bracket boundary rounding and bonus values deferred; support/healing contributions count.
 - TOWER-MILESTONE-001 B: seasonal tower floor milestone rewards every five floors, with enhanced rewards every 25 floors; separate leaderboard rewards and automatic season-end settlement remain. Exact floor cap, amounts and claim/deduplication policy deferred.
 - Next: GitHub research for each mechanic and separate technical candidate approval. No implementation, integration, dependencies, tests, server/game changes or APK builds authorized.
+
+## GDD-04 - ROUND 11 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner approved the following technical planning dispositions from docs/research/GDD-04_ROUND-11_GITHUB_CANDIDATES.md:
+- GH04-091 STUDY: Rubonnek/quest-manager, Godot quest state/progress metadata for repeat-XP decay UI; server retains XP authority.
+- GH04-092 STUDY: PieKing1215/godot-loot-tables, Godot 4 WIP weighted pool and resource representation for dungeon/tower reward previews; no client-authoritative reward rolls.
+- GH04-093 STUDY: orumcan/godot-loot-table, Godot 4.4+ editor dock for level-indexed weighted loot tables and 5/25-floor milestone authoring; no integration or runtime assumption.
+- GH04-094 STUDY: ShomyKohai/quest-system, Godot 4.4+ conditions/progress signals for boss tier and tower milestone UI; no competing quest framework installation.
+- GH04-095 STUDY: hatchet-dev/pgoutbox, PostgreSQL/pgx transactional outbox reference for boss percentile and tower milestone notifications; idempotent consumer required.
+- GH04-096 ADAPT: reuse robfig/cron v3 for 06:00 Europe/Moscow daily repeat counters and anchored tower season settlement triggers; PostgreSQL remains authoritative for period keys and recovery.
+- GH04-097 BUILD: own versioned server XP multiplier table after three full repeat awards (100%, 80%, 65%, 50%, minimum 30%), deterministic rounding and per-source repeat ledger; exact indexing and reset semantics deferred.
+- GH04-098 BUILD: own atomic server extra dungeon price quote/ledger at 1x/2x/3x base earnable-currency price, 3 free + 3 paid per type/day, concurrency-safe resets.
+- GH04-099 BUILD: own world boss ranking percentile reward brackets top 1/5/20/50%, deterministic tie/rounding, support-aware contribution, separate participation grants, idempotent settlement; tie and small-population rules deferred.
+- GH04-100 BUILD: own seasonal tower 5-floor milestone rewards and enhanced 25-floor milestones, independent ranking prizes, offline-safe automatic season settlement, deduplication and audit; exact enhanced reward stacking deferred.
+- Approval records design/research choices only. No implementation, integration, dependencies, testing, server/game changes or APK builds authorized. Next: GDD-04 round 12 design.
