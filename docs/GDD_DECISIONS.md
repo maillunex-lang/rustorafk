@@ -197,3 +197,10 @@ Owner approved the following dispositions as planning decisions only:
 - GH04-051 BUILD: own maximum three extra dungeon purchases per type/day with increasing costs, server period keys and transactional debits.
 - GH04-052 BUILD: own seasonal tower leaderboard sorted by highest cleared floor then server-validated battle result, stable tie-breaking and anti-cheat.
 - Research record: docs/research/GDD-04_ROUND-6_GITHUB_CANDIDATES.md. No code changes, integrations, dependencies, tests or APK builds authorized. Next: GDD-04 round 7 design.
+
+## GDD-04 - ROUND 7 APPROVED (2026-11-22)
+- XP-CAP-001 C: first-time completions and quests grant full account XP; repeated farming yields diminishing account XP. Exact decay schedule, per-source exemptions and thresholds deferred; no blanket hard daily XP cap implied.
+- SWEEP-REWARD-001 B: eligible sweep battles grant the same reward pools and probabilities as regular battles; still require first victory and spend mode-specific attempts/energy. Server-authoritative RNG and idempotent claims required; no client-side rerolling.
+- TOWER-TIE-001 B: seasonal tower ranking first sorts by highest cleared floor, then remaining team health, then time the floor was achieved. Exact health normalization and timestamp semantics deferred.
+- SEASON-RESET-001 B: 28-day tower seasons roll over at 06:00 Europe/Moscow, aligned to daily reset; anchor date and reward-claim grace policy deferred. Permanent tower remains unchanged.
+- Next: GitHub research per mechanic and separate technical candidate approval. No implementation, dependencies, tests or builds authorized.
