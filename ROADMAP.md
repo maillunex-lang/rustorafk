@@ -1,6 +1,6 @@
 ## GDD workflow: accelerated design-first (2026-11-22)
 
-Owner requested that remaining GDD work be concise: present 3–4 design options per system, record approved choices and deferred implementation requirements, then move to next GDD section. Do not build APKs, integrate plugins, run exhaustive tests or implement unfinished features during GDD unless separately requested. Existing GDD-02 prototype and approved decisions remain intact. Remaining GDD-02 tasks (automatic ordinary-skill use, balance, AnimationTree/retargeting, full integration, production server authority and device QA) are implementation backlog, not a blocker to design-stage progression. GitHub candidates must still be separately approved before any integration. GDD-02 design closure and GDD-03 start require explicit owner approval.
+Owner requested concise GDD design without implementation, but explicitly reaffirmed mandatory GitHub research and technical option approval after EACH approved design round (2026-11-22). Workflow: owner selects mechanics -> record approved decisions -> research GitHub candidates/licenses/version fit -> present ADOPT/ADAPT/BUILD/STUDY -> obtain separate owner technical approval -> record decisions -> only then move to next design round. Do not build APKs, integrate plugins, run exhaustive tests or implement unfinished features during GDD unless separately requested. Existing GDD-02 prototype and approved decisions remain intact. Remaining GDD-02 tasks (automatic ordinary-skill use, balance, AnimationTree/retargeting, full integration, production server authority and device QA) are implementation backlog, not a blocker to design-stage progression. GitHub candidates must still be separately approved before any integration. GDD-02 design closure and GDD-03 start require explicit owner approval.
 
 # ROADMAP - RuStore AFK
 
@@ -38,7 +38,7 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
   - [ ] Development backlog: summon odds/guarantees, duplicate conversions, XP curve to level 200, skill materials, faction 2/3/5 effects and roster counts, six-star costs, starting-rarity upgrade ceilings, free/paid reset threshold and refunds, collection album/achievements/modest bonuses, UI, server authority, analytics, balance, tests and technology approvals; no implementation during GDD
 - [ ] GDD-04: campaign, quests, PvE (design in progress; implementation and technology research deferred)
   - [x] Round 1 owner approved 2026-11-22: STORY-001 A (linear chapters), CAMPAIGN-001 B (20–30 battles + scenes per chapter), QUEST-001 D (story/daily/weekly/event/hero quests), PVE-001 D (tower/dungeons/world bosses/co-op)
-  - [ ] Round 2: chapter unlocks, battle repetition, story presentation and PvE rewards (owner choice pending)
+  - [x] GitHub research after round 1: [GDD-04 GitHub candidates](docs/research/GDD-04_GITHUB_CANDIDATES.md); GH04-001…008 proposed, awaiting separate owner technical choices\n  - [ ] Round 2: chapter unlocks, battle repetition, story presentation and PvE rewards (on hold until technical candidate review)
   - [ ] Development backlog: chapter scripts, quest content and reward tables, reset rules, challenge tower, resource/boss dungeons, world bosses, co-op/matchmaking, server authority, events, QA; no implementation during GDD
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
@@ -48,4 +48,4 @@ Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD
 - [ ] GDD-10: backend, security, analytics, live operations
 - [ ] GDD-11: production milestones, QA, beta, launch
 
-For remaining GDD design: owner chooses concise decisions -> record approved choices and implementation backlog in GitHub -> next section. GitHub research, license/dependency review, technology approvals and integration/testing occur during development; no third-party integration without explicit approval.
+For each remaining GDD round: owner chooses concise design decisions -> record in GitHub -> GitHub research/license and compatibility pre-review -> propose ADOPT/ADAPT/BUILD/STUDY -> separate owner approval -> record technical decisions -> next design round. Actual integration and tests are deferred to development; no third-party integration without explicit approval.
