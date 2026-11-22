@@ -61,3 +61,10 @@ Owner explicitly authorized transition to GDD-03 in accelerated design-first mod
 - CLASS-002 A: each hero has one fixed combat class; no class switching. Preserve the six GDD-02 combat roles.
 - Development backlog: faction distribution and bonuses, rarity distribution, six-star economy and duplicate requirements, hero-specific class assignments and roster UI. No implementation or third-party integration during GDD without separate approval.
 - GDD-03 design remains open for the next concise round.
+
+## GDD-03 - ROUND 3 APPROVED (2026-11-22)
+- EXP-001 B: hero levels advance through experience consumables (XP potions) and experience earned in battles.
+- SKILL-UP-001 B: individual abilities are upgraded separately using gold and materials.
+- FACTION-BONUS-001 C: faction synergies support flexible thresholds of 2 / 3 / 5 heroes of the same faction in the five-hero squad. Exact bonus magnitudes and interaction rules are deferred to development/balance.
+- TEAM-001 A: freely compose the five-hero squad from any owned heroes; no mandatory tank, support, or class quota. This is compatible with optional faction synergy bonuses.
+- Deferred implementation details: XP curves and caps, potion drops, skill upgrade costs, faction synergy effects and stacking, combat balancing and UI explanations. No code or APK during accelerated GDD.
