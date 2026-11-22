@@ -31,6 +31,13 @@ var fps_samples := 0
 var time_passed := 0.0
 var ultimate_flash := 0.0
 var camera: Camera3D
+var battle_started := false
+var formation_buttons: Array[Button] = []
+var formation_selected := -1
+var formation_panel: VBoxContainer
+var start_battle_button: Button
+var nav_agents: Array[NavigationAgent3D] = []
+var nav_region: NavigationRegion3D
 
 func _ready() -> void:
     sim.setup()
@@ -42,6 +49,17 @@ func _ready() -> void:
     floor_node.mesh = floor_mesh
     floor_node.position.y = -0.2
     add_child(floor_node)
+    nav_region = NavigationRegion3D.new()
+    nav_region.name = "ArenaNavigationRegion"
+    var nav_mesh := NavigationMesh.new()
+    nav_mesh.vertices = PackedVector3Array([
+        Vector3(-6.8, 0, -6.8), Vector3(6.8, 0, -6.8),
+        Vector3(6.8, 0, 6.8), Vector3(-6.8, 0, 6.8)
+    ])
+    nav_mesh.add_polygon(PackedInt32Array([0, 1, 2]))
+    nav_mesh.add_polygon(PackedInt32Array([0, 2, 3]))
+    nav_region.navigation_mesh = nav_mesh
+    add_child(nav_region)
     var light := DirectionalLight3D.new()
     light.rotation_degrees = Vector3(-55, -25, 0)
     add_child(light)
@@ -78,7 +96,10 @@ func _ready() -> void:
             pending_actions.append([])
             var agent := NavigationAgent3D.new()
             agent.avoidance_enabled = false
+            agent.path_desired_distance = 0.15
+            agent.target_desired_distance = 0.15
             unit.add_child(agent)
+            nav_agents.append(agent)
             unit.set_meta("fighter_index", team * 5 + i)
             var bt := BTPlayer.new()
             bt.name = "LimboAI_BTPlayer"
@@ -205,11 +226,28 @@ func _ready() -> void:
         else:
             hud_cooldown_labels.append(cooldown_label)
 
-    var arrange := Button.new()
-    arrange.text = "SWAP 1 / 5 (before battle)"
-    arrange.custom_minimum_size = Vector2(0, 40)
-    arrange.pressed.connect(_swap)
-    bottom.add_child(arrange)
+    formation_panel = VBoxContainer.new()
+    formation_panel.add_theme_constant_override("separation", 4)
+    bottom.add_child(formation_panel)
+    var formation_title := Label.new()
+    formation_title.text = "FORMATION: tap two slots to swap, then START"
+    formation_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    formation_panel.add_child(formation_title)
+    var formation_row := HBoxContainer.new()
+    formation_row.add_theme_constant_override("separation", 5)
+    formation_panel.add_child(formation_row)
+    for i in range(5):
+        var slot_button := Button.new()
+        slot_button.custom_minimum_size = Vector2(65, 48)
+        slot_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        slot_button.pressed.connect(_formation_slot.bind(i))
+        formation_row.add_child(slot_button)
+        formation_buttons.append(slot_button)
+    start_battle_button = Button.new()
+    start_battle_button.text = "START BATTLE"
+    start_battle_button.custom_minimum_size = Vector2(0, 46)
+    start_battle_button.pressed.connect(_start_battle)
+    formation_panel.add_child(start_battle_button)
     _refresh()
 
 func _find_animation_player(node: Node) -> AnimationPlayer:
@@ -235,11 +273,31 @@ func _skill(skill_index: int) -> void:
     skill_feedback_ttl = 3.0
     _refresh()
 
-func _swap() -> void:
-    if sim.move_formation(0, 4):
-        var p := fighters[0].position
-        fighters[0].position = fighters[4].position
-        fighters[4].position = p
+func _formation_slot(slot: int) -> void:
+    if battle_started:
+        return
+    if formation_selected < 0:
+        formation_selected = slot
+        skill_feedback.text = "Select destination for slot %d" % (slot + 1)
+    elif formation_selected == slot:
+        formation_selected = -1
+        skill_feedback.text = "Selection cancelled"
+    else:
+        var from_slot := formation_selected
+        formation_selected = -1
+        if sim.move_formation(from_slot, slot):
+            skill_feedback.text = "Swapped slots %d and %d" % [from_slot + 1, slot + 1]
+    skill_feedback_ttl = 4.0
+    _refresh()
+
+func _start_battle() -> void:
+    if battle_started:
+        return
+    battle_started = true
+    formation_selected = -1
+    formation_panel.visible = false
+    skill_feedback.text = "BATTLE STARTED"
+    skill_feedback_ttl = 2.0
     _refresh()
 
 func _refresh() -> void:
@@ -253,12 +311,14 @@ func _refresh() -> void:
             b += 1
     status.text = "GDD-02 | %.1fs | %d vs %d | ult: %d | %s" % [sim.elapsed, a, b, sim.ultimate_events, sim.winner]
     detail.text = sim.last_event
+    for i in range(formation_buttons.size()):
+        formation_buttons[i].text = "%d: %s%s" % [i + 1, str(sim.allies[i]["role"]).to_upper(), " *" if formation_selected == i else ""]
     for i in range(skill_buttons.size()):
         var cooldown: float = sim.allies[0]["cooldowns"][i]
-        skill_buttons[i].disabled = cooldown > 0.0 or sim.allies[0]["hp"] <= 0 or sim.finished
+        skill_buttons[i].disabled = not battle_started or cooldown > 0.0 or sim.allies[0]["hp"] <= 0 or sim.finished
         hud_cooldown_labels[i].text = "%.1f s" % cooldown if cooldown > 0.0 else "READY"
         hud_icons[i].set_cooldown(cooldown, sim.SKILL_COOLDOWNS[i], not skill_buttons[i].disabled)
-    ultimate_button.disabled = sim.finished or sim.allies[0]["hp"] <= 0 or sim.allies[0]["cooldowns"][3] > 0.0
+    ultimate_button.disabled = not battle_started or sim.finished or sim.allies[0]["hp"] <= 0 or sim.allies[0]["cooldowns"][3] > 0.0
     hud_ultimate_label.text = "%.1f s" % sim.allies[0]["cooldowns"][3] if sim.allies[0]["cooldowns"][3] > 0.0 else "READY"
     hud_icons[3].set_cooldown(sim.allies[0]["cooldowns"][3], sim.SKILL_COOLDOWNS[3], not ultimate_button.disabled)
 
@@ -340,6 +400,25 @@ func _spawn_impact(target: int, damage: int, fatal: bool) -> void:
     effect_ttl.append(0.24)
     effect_total += 1
 
+func _physics_process(delta: float) -> void:
+    if not battle_started:
+        return
+    for i in range(fighters.size()):
+        var fighter := fighters[i]
+        if not fighter.visible:
+            continue
+        var destination := Vector3(fighter.position.x, 0.0, -0.9 if i < 5 else 0.9)
+        var agent := nav_agents[i]
+        if agent.target_position.distance_to(destination) > 0.12:
+            agent.target_position = destination
+        if agent.is_navigation_finished():
+            continue
+        var next_position := agent.get_next_path_position()
+        var direction := next_position - fighter.global_position
+        direction.y = 0.0
+        if direction.length() > 0.02:
+            fighter.global_position += direction.normalized() * minf(delta * 1.3, direction.length())
+
 func _process(delta: float) -> void:
     skill_feedback_ttl = maxf(0.0, skill_feedback_ttl - delta)
     if skill_feedback_ttl == 0.0 and skill_feedback != null:
@@ -365,6 +444,9 @@ func _process(delta: float) -> void:
         else:
             effect_nodes[j].scale = Vector3.ONE * (0.4 + (0.24 - effect_ttl[j]) * 2.5)
 
+    if not battle_started:
+        _refresh()
+        return
     for i in range(fighters.size()):
         var chosen: int = int(fighters[i].get_meta("bt_target", -1))
         if chosen >= 0:
@@ -404,8 +486,6 @@ func _process(delta: float) -> void:
                         ap.play(desired, 0.10)
         if not fighter.visible:
             continue
-        var destination := Vector3(fighter.position.x, 0, -0.9 if i < 5 else 0.9)
-        fighter.position = fighter.position.move_toward(destination, delta * 1.3)
         fighter.rotation.y = 0.0
         fighter.position.y = 0.0
     if ultimate_flash > 0:
