@@ -4,7 +4,7 @@ Owner requested that remaining GDD work be concise: present 3–4 design options
 
 # ROADMAP - RuStore AFK
 
-Status: GDD-01 accepted; GDD-02 design approved and prototype preserved with remaining implementation/QA deferred; GDD-03 design in progress (owner authorized transition 2026-11-22).
+Status: GDD-01 accepted; GDD-02 design approved, implementation/QA deferred; GDD-03 design CLOSED (16/16 approved); GDD-04 design IN PROGRESS (2026-11-22).
 
 - [x] INIT-001: repository and approval workflow initialized
 - [x] GDD-01: setting, art style, orientation, battle concept, roster, no base, story
@@ -32,11 +32,11 @@ Status: GDD-01 accepted; GDD-02 design approved and prototype preserved with rem
   - [x] Extend LimboAI target selection by role: assassin low-HP, marksman backline priority, warrior non-tank; other roles default first living target. Automated 10/10 BT test and role tests passed\n  - [ ] AI-driven active-skill policies, balance tests and role differentiation with unique models
   - [ ] Restore GDD-01 addons and verify integrated project; document VPS-only Meshy asset/native binary reproducibility
   - [x] Exported signed 54 MB Android ARM64 APK with three skill test buttons, LimboAI and performance overlay\n  - [x] Exported signed Android ARM64 54 MB formation/navigation APK (gdd02-formation-navigation-arm64.apk)\n  - [x] Exported signed Android ARM64 54 MB six-role tactics APK (gdd02-six-roles-arm64.apk), device test pending\n  - [ ] Final production GDD-02 implementation/QA acceptance deferred to development phase; owner approved moving to GDD-03 design on 2026-11-22
-- [ ] GDD-03: heroes, collection, rarity, progression (design in progress; no implementation during GDD)
+- [x] GDD-03: heroes, collection, rarity, progression (design closed; implementation deferred)
   - [x] Round 1 owner approved 2026-11-22: HERO-001 D (summons/fragments/events/story), RARITY-001 C (N/R/SR/SSR/UR/Mythic), LEVEL-001 C (level/stars/skills/equipment), DUP-001 D (star upgrades/fragments/exchange)
-  - [x] Round 2 owner approved 2026-11-22: FACTION-001 C (four main + two special factions), ROSTER-001 B (most of 24 heroes in main factions; fewer rare heroes in special factions), STAR-001 B (six stars maximum), CLASS-002 A (fixed hero class)\n  - [x] Round 3 owner approved 2026-11-22: EXP-001 B (XP potions + battle XP), SKILL-UP-001 B (gold/materials per skill), FACTION-BONUS-001 C (2/3/5 faction synergy), TEAM-001 A (unrestricted five-hero composition)\n  - [ ] Round 4: hero progression limits, rarity upgrade rules, hero reset and collection bonuses (owner choice pending)
-  - [ ] Development backlog: summon odds and guarantees, duplicate conversion, resource costs, XP curves, skill materials, faction 2/3/5 bonus effects and roster counts, progression caps, six-star upgrade economy, rarity balance, hero collection UI, server authority, analytics and tests; no implementation during GDD
-- [ ] GDD-04: campaign, quests, PvE + research/approval
+  - [x] Round 2 owner approved 2026-11-22: FACTION-001 C (four main + two special factions), ROSTER-001 B (most of 24 heroes in main factions; fewer rare heroes in special factions), STAR-001 B (six stars maximum), CLASS-002 A (fixed hero class)\n  - [x] Round 3 owner approved 2026-11-22: EXP-001 B (XP potions + battle XP), SKILL-UP-001 B (gold/materials per skill), FACTION-BONUS-001 C (2/3/5 faction synergy), TEAM-001 A (unrestricted five-hero composition)\n  - [x] Round 4 owner approved 2026-11-22: CAP-001 B (level cap 200), RARITY-UP-001 B (rarity upgrades with starting-rarity ceilings), RESET-001 C (free early reset then in-game currency), COLLECTION-001 C (hero album, achievements, modest bonuses)\n  - [x] Design sign-off: all 16 choices approved across four rounds; no production implementation or QA acceptance implied
+  - [ ] Development backlog: summon odds/guarantees, duplicate conversions, XP curve to level 200, skill materials, faction 2/3/5 effects and roster counts, six-star costs, starting-rarity upgrade ceilings, free/paid reset threshold and refunds, collection album/achievements/modest bonuses, UI, server authority, analytics, balance, tests and technology approvals; no implementation during GDD
+- [ ] GDD-04: campaign, quests, PvE (design in progress; owner choices pending; implementation and technology research deferred)
 - [ ] GDD-05: idle rewards, equipment and economy (BASE-001 A: no base building)
 - [ ] GDD-06: online, PvP, leaderboards, guild roadmap
 - [ ] GDD-07: monetization, fairness, RuStore compliance
