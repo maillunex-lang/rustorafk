@@ -78,4 +78,11 @@ Owner explicitly authorized transition to GDD-03 in accelerated design-first mod
 - Development backlog: hero data models, 24-hero roster/faction and rarity assignment, six classes, summon/fragment/event/story acquisition and guarantees, N/R/SR/SSR/UR/Mythic rarity transitions and ceilings, duplicate conversions, six-star costs, XP to level 200, skill upgrade costs, free/paid reset threshold and refund rules, collection album/achievements/modest bonuses, 2/3/5 faction synergies, free five-hero squad, server authority, UI, balance, testing and GitHub technology review/approval before integration.
 
 ## GDD-04 - IN DESIGN (2026-11-22)
-Scope: story campaign, quests, PvE. No choices approved yet. Accelerated design-first workflow: ask for owner choices, record decisions, defer implementation and technology integration.
+Scope: story campaign, quests, PvE. Round 1 approved below; later rounds pending. Accelerated design-first workflow: ask for owner choices, record decisions, defer implementation and technology integration.
+
+## GDD-04 - ROUND 1 APPROVED (2026-11-22)
+- STORY-001 A: linear main story campaign organized into chapters, in the approved Heaven versus Abyss setting. Branching narrative is not selected.
+- CAMPAIGN-001 B: each campaign chapter has 20–30 battles plus story scenes; exact count, scene scripts and chapter count deferred to content production.
+- QUEST-001 D: story, daily, weekly, event and hero-specific quests. Hero-specific quests do not by themselves imply separate hero story campaigns.
+- PVE-001 D: hybrid PvE includes a challenge tower, resource/boss dungeons, world bosses and cooperative play. Multiplayer architecture and release phasing deferred.
+- Implementation backlog: chapter/quest content, mission tracking and rewards, repeatability/reset cadence, PvE difficulty and matchmaking, authoritative progression, live events, boss balance, localization, QA. No code or APK during GDD.
