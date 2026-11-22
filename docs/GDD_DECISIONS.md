@@ -124,3 +124,16 @@ Owner explicitly approved the following planning dispositions after the round-2 
 - DUNGEON-001 B: separate resource dungeons for gold, experience, equipment and upgrade materials; exact difficulty tiers, entry limits and loot tables deferred.
 - BOSS-001 C: hybrid world boss with shared target/damage ranking plus distinct cooperative battles; live-versus-asynchronous world boss participation and co-op session design deferred.
 - Next: GitHub research for all four mechanics and separate owner approval of technical dispositions. No implementation, integration, builds or tests during GDD.
+
+## GDD-04 - ROUND 3 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved all nine technical candidate dispositions following the round-3 GitHub research. These are planning decisions, NOT authorization to install or implement:
+- GH04-017 STUDY: Rubonnek/quest-manager, hierarchical quest-state reference; do not replace already approved Questify without new approval.
+- GH04-018 STUDY: RyosukeMondo/snap-dungeon-v2, mobile daily runs/floors reference, including third-party asset licensing review.
+- GH04-019 STUDY: Drejzer/FloorArchitect, optional room-layout reference; procedural dungeons are not approved by DUNGEON-001 B.
+- GH04-020 STUDY: CodingQuests/godot-multiplayer-starter, authoritative co-op and lobby reference; not a replacement for planned Go backend.
+- GH04-021 STUDY: tngklp/godot-multiplayer-lobby-system, alternate lobby and readiness reference, not permission for peer-host authority.
+- GH04-022 BUILD: custom server daily/weekly reset scheduler with configured boundary, idempotency and outage recovery.
+- GH04-023 BUILD: custom permanent and seasonal tower progress, season resets and reward state.
+- GH04-024 BUILD: custom data-driven gold/XP/equipment/material dungeon definitions and server-validated entry/rewards.
+- GH04-025 BUILD: custom world-boss damage ranking plus separate authoritative cooperative encounters.
+- Research record: docs/research/GDD-04_ROUND-3_GITHUB_CANDIDATES.md. Godot 4.7.2/Android compatibility tests and implementation remain deferred. Next: GDD-04 round 4 design.
