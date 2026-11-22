@@ -3,6 +3,8 @@ const Logic = preload("res://gdd02_combat.gd")
 const HERO_SCENE = preload("res://assets/kaeron_animated.glb")
 var animation_players: Array[AnimationPlayer] = []
 var health_bars: Array[MeshInstance3D] = []
+var action_until: Array[float] = []
+var action_names: Array[String] = []
 var sim = Logic.new()
 var fighters: Array[Node3D] = []
 var status: Label
@@ -51,6 +53,8 @@ func _ready() -> void:
             hp_back.material_override = hp_material
             unit.add_child(hp_back)
             health_bars.append(hp_back)
+            action_until.append(0.0)
+            action_names.append("")
             var agent := NavigationAgent3D.new()
             agent.avoidance_enabled = false
             unit.add_child(agent)
@@ -91,6 +95,7 @@ func _find_animation_player(node: Node) -> AnimationPlayer:
 func _ultimate() -> void:
     if sim.manual_ultimate(0):
         ultimate_flash = 0.35
+        _consume_events()
     _refresh()
 
 func _swap() -> void:
@@ -112,21 +117,46 @@ func _refresh() -> void:
     status.text = "GDD-02 | %.1fs | %d vs %d | ult: %d | %s" % [sim.elapsed, a, b, sim.ultimate_events, sim.winner]
     detail.text = sim.last_event
 
+func _play_action(index: int, name: String, seconds: float) -> void:
+    if index < 0 or index >= animation_players.size():
+        return
+    var player := animation_players[index]
+    if not player.has_animation(name):
+        return
+    if time_passed < action_until[index] and action_names[index] == "Dead":
+        return
+    player.play(name, 0.08)
+    action_names[index] = name
+    action_until[index] = time_passed + minf(seconds, player.get_animation(name).length)
+
+func _consume_events() -> void:
+    for event in sim.visual_events:
+        var actor: int = event["actor"]
+        var target: int = event["target"]
+        _play_action(actor, "Charged_Slash" if event["kind"] == "ultimate" else ("Left_Slash" if actor % 2 == 0 else "Thrust_Slash"), 0.85)
+        var victim: Dictionary = sim.allies[target] if target < 5 else sim.enemies[target - 5]
+        if victim["hp"] <= 0:
+            _play_action(target, "Dead", 1.2)
+        elif time_passed >= action_until[target]:
+            _play_action(target, "Hit_Reaction", 0.45)
+    sim.visual_events.clear()
+
 func _process(delta: float) -> void:
     sim.step(delta)
+    _consume_events()
     time_passed += delta
     ultimate_flash = maxf(0.0, ultimate_flash - delta)
     for i in range(fighters.size()):
         var fighter := fighters[i]
         var hero: Dictionary = sim.allies[i] if i < 5 else sim.enemies[i - 5]
-        fighter.visible = hero["hp"] > 0
+        fighter.visible = hero["hp"] > 0 or (action_names[i] == "Dead" and time_passed < action_until[i])
         if i < health_bars.size():
             health_bars[i].scale.x = maxf(0.02, float(hero["hp"]) / float(hero["max_hp"]))
         if i < animation_players.size() and fighter.visible:
             var ap := animation_players[i]
             var moving := fighter.position.z < -1.0 if i < 5 else fighter.position.z > 1.0
             var desired := "Running" if moving else "Combat_Stance"
-            if ap.has_animation(desired) and ap.current_animation != desired:
+            if time_passed >= action_until[i] and ap.has_animation(desired) and ap.current_animation != desired:
                 ap.play(desired, 0.15)
         if not fighter.visible:
             continue
