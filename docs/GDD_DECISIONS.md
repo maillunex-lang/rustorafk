@@ -117,3 +117,10 @@ Owner explicitly approved the following planning dispositions after the round-2 
 - GH04-015 BUILD: own authoritative PvE loot tables, drops, fragments and idempotent grants.
 - GH04-016 BUILD: own portrait/text UI presentation on the approved Dialogue Manager runtime; no 3D cutscenes.
 - Research record: docs/research/GDD-04_ROUND-2_GITHUB_CANDIDATES.md. Next: GDD-04 round 3 design. Implementation deferred until separately authorized.
+
+## GDD-04 - ROUND 3 APPROVED (2026-11-22)
+- DAILY-001 B: daily and weekly quests reset at a configured unified server reset time. Exact time, time zone, weekly boundary, and event exceptions are deferred.
+- TOWER-001 C: persistent-progress challenge tower plus a separate seasonal tower; seasonal reset/reward rules and floor counts deferred.
+- DUNGEON-001 B: separate resource dungeons for gold, experience, equipment and upgrade materials; exact difficulty tiers, entry limits and loot tables deferred.
+- BOSS-001 C: hybrid world boss with shared target/damage ranking plus distinct cooperative battles; live-versus-asynchronous world boss participation and co-op session design deferred.
+- Next: GitHub research for all four mechanics and separate owner approval of technical dispositions. No implementation, integration, builds or tests during GDD.
