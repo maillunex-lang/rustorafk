@@ -72,6 +72,19 @@ func _ready() -> void:
             var agent := NavigationAgent3D.new()
             agent.avoidance_enabled = false
             unit.add_child(agent)
+            unit.set_meta("fighter_index", team * 5 + i)
+            var bt := BTPlayer.new()
+            bt.name = "LimboAI_BTPlayer"
+            bt.active = false
+            var tree := BehaviorTree.new()
+            var sequence := BTSequence.new()
+            var select_target: BTAction = load("res://gdd02_bt_target.gd").new()
+            sequence.add_child(select_target)
+            tree.root_task = sequence
+            bt.behavior_tree = tree
+            unit.add_child(bt)
+            bt.set_scene_root_hint(unit)
+            bt.active = true
             fighters.append(unit)
     camera = Camera3D.new()
     camera.position = Vector3(0, 10.5, 11.5)
@@ -219,6 +232,10 @@ func _process(delta: float) -> void:
         else:
             effect_nodes[j].scale = Vector3.ONE * (0.4 + (0.24 - effect_ttl[j]) * 2.5)
 
+    for i in range(fighters.size()):
+        var chosen: int = int(fighters[i].get_meta("bt_target", -1))
+        if chosen >= 0:
+            sim.ai_targets[i] = chosen
     sim.step(delta)
     _consume_events()
     if sim.finished and not win_animation_played:
