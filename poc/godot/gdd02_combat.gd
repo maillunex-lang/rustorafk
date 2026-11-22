@@ -67,13 +67,13 @@ func _tick_team(attacking: Array[Dictionary], defending: Array[Dictionary], delt
         hero["attack_timer"] -= delta
         if hero["attack_timer"] > 0:
             continue
-        hero["attack_timer"] += 1.7
+        hero["attack_timer"] += 2.7
         var target := _first_living(defending)
         if target < 0:
             return
-        var damage := 9 if hero["role"] == "tank" else 15
+        var damage := 7 if hero["role"] == "tank" else 11
         if hero["role"] == "assassin":
-            damage = 21
+            damage = 16
         defending[target]["hp"] = maxi(0, defending[target]["hp"] - damage)
         hero["energy"] = mini(100, hero["energy"] + 8)
         last_event = "%s hits %d for %d" % [hero["role"], target + 1, damage]
