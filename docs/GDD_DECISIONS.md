@@ -144,3 +144,16 @@ Owner explicitly approved all nine technical candidate dispositions following th
 - DUNGEON-ENTRY-001 B: free daily dungeon attempts plus optional extra entries purchased with in-game resources; exact number, costs, caps and whether resources are premium deferred, no real-money purchases implied.
 - BOSS-REWARD-001 C: participation reward plus individual contribution and ranking rewards for world boss; separate co-op rewards. Contribution floors, eligibility and anti-abuse rules deferred.
 - Next: GitHub research for each mechanism, propose technical candidates for separate owner approval. No implementation, integration, tests or builds.
+
+## GDD-04 - ROUND 4 TECHNICAL CHOICES APPROVED (2026-11-22)
+Owner explicitly approved technical dispositions, for future planning only:
+- GH04-026 ADAPT: robfig/cron v3 for scheduled Go jobs at 06:00 Europe/Moscow; durable period IDs, recovery and atomic claims remain custom.
+- GH04-027 STUDY: go-co-op/gocron v2 as alternate scheduler, not a second approved dependency.
+- GH04-028 STUDY: Rubonnek/quest-manager for quest UI/reset state reference, reusing prior GH04-017 STUDY.
+- GH04-029 STUDY: PieKing1215/godot-loot-tables for editor-facing rewards reference, reusing GH04-010 STUDY; never trust client RNG.
+- GH04-030 STUDY: NVIDIA/go-ratelimit for API protection only, not gameplay attempt balances; Redis requirement requires later assessment.
+- GH04-031 BUILD: own idempotent daily/weekly reset period state at 06:00 MSK and Monday, including downtime recovery and transactional claims.
+- GH04-032 BUILD: own one-time permanent tower floor claims and seasonal rewards/rankings/rollovers.
+- GH04-033 BUILD: own transactional daily free attempts and in-game-resource extra dungeon entries, with idempotency/refunds.
+- GH04-034 BUILD: own world-boss participation/contribution/ranking reward validation and separate co-op claims.
+- Research record: docs/research/GDD-04_ROUND-4_GITHUB_CANDIDATES.md. No installation, integration, tests, APK or server/game code changes authorized. Next: GDD-04 round 5 design choices.
