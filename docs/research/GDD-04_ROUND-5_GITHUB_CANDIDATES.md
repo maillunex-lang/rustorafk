@@ -1,0 +1,17 @@
+# GDD-04 Round 5 GitHub research (2026-11-22)
+
+Approved design: CHAPTER-LEVEL-001 B (account level + prior chapter), DUNGEON-LIMIT-001 B (three free daily entries for EACH gold/XP/equipment/material dungeon), TOWER-SEASON-001 C (28-day season), DIFFICULTY-001 C (stats + new enemy abilities + special stage conditions). Research and technical PROPOSALS only.
+
+## Technical candidates requiring separate owner approval
+- GH04-035 **STUDY** [hatchet-dev/pgoutbox](https://github.com/hatchet-dev/pgoutbox), MIT LICENSE verified: Go pgx transactional outbox, reference for durable chapter-unlock notifications, dungeon reward events and seasonal rollover delivery; not needed for core gate validation itself. Check actual Go pgx compatibility before adoption.
+- GH04-036 **ADAPT** [robfig/cron](https://github.com/robfig/cron) v3, MIT LICENSE verified: reuse already approved GH04-026 ADAPT to trigger 28-day tower season checks; cron cannot directly guarantee rolling 28-day season boundaries. Anchor season start in database, compute exact 28-day periods and idempotent rollover in custom code.
+- GH04-037 **ADAPT** [limbonaut/limboai](https://github.com/limbonaut/limboai), permissive MIT-style LICENSE.md verified: existing GDD-02 ADAPT selection; reusable behavior trees/state machines for new enemy skills, phases and special stage conditions. Upstream README lists 1.8.x extension for Godot 4.6+ and module for Godot 4.7; target Android native extension testing still pending.
+- GH04-038 **STUDY** [CodingQuests/godot-enemy-ai](https://github.com/CodingQuests/godot-enemy-ai), MIT LICENSE verified: 2D telegraphed attacks, boss patterns, enemy level scaling; learn attack readability/phase design only, not direct 3D combat integration. README tests Godot 4.7.2 Windows, Android unverified; art has separate CC0 terms.
+- GH04-039 **STUDY** [CodingQuests/godot-state-machine](https://github.com/CodingQuests/godot-state-machine), MIT LICENSE verified: small Godot 4 state machine for attack/interrupt/recovery phases, 2D example, not a substitute for already approved LimboAI.
+- GH04-040 **BUILD** custom server chapter unlock checks combining authoritative account level and previous-chapter completion, with per-chapter threshold config, no client authority. Extends GH04-013 BUILD.
+- GH04-041 **BUILD** custom per-dungeon-type daily free attempt counters (3 each, 12 total), Moscow 06:00 reset, atomic consume/refund and paid-entry wallet, extends GH04-031/033 BUILD.
+- GH04-042 **BUILD** custom 28-day tower season IDs anchored to configurable season start, independent of permanent tower; snapshots, rollover, claims and ranking, extends GH04-023/032 BUILD.
+- GH04-043 **BUILD** data-driven PvE difficulty configurations (enemy stat curves, skill unlock tiers, stage modifiers), server-validated battles and authoring previews; extends approved combat/AI and reward systems.
+
+## Research coverage and constraints
+CHAPTER: GH04-035 and GH04-040; DUNGEON: GH04-035 and GH04-041; TOWER: GH04-036 and GH04-042; DIFFICULTY: GH04-037/038/039/043. Five distinct GitHub repositories' README and license files were inspected via connected GitHub. No dependencies installed, code copied, tests, builds or integration. Compatibility and license of any bundled art must be checked separately. Reuse earlier approvals rather than duplicate dependencies. Exact account-level gates, 28-day anchor, difficulty numbers and paid-entry costs remain undecided.
