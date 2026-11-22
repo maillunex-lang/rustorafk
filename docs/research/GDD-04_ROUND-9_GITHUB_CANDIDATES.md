@@ -1,0 +1,18 @@
+# GDD-04 Round 9 GitHub research (2026-11-22)
+
+Owner-approved gameplay: CHAPTER-GATE-001 B (configurable increasing per-chapter account level table + previous chapter completion), DUNGEON-PRICE-001 B (configurable shared escalating three-purchase price ladder per dungeon type/day), BOSS-SUPPORT-001 C (damage, effective healing, buffs and prevented damage with anti-abuse), SEASON-CLAIM-001 B (automatic server grants and player notifications, including offline). Exact thresholds, currency/amounts, coefficients and notification policy deferred.
+
+## GitHub technical candidates: proposals only, separate approval required
+- GH04-071 **STUDY** [Rubonnek/quest-manager](https://github.com/Rubonnek/quest-manager), MIT LICENSE verified, hierarchical quest tree and custom conditions reference for chapter level/previous-chapter gating UI. Reuse GH04-017/028/046/053/063 STUDY; no server entitlement delegated to client.
+- GH04-072 **STUDY** [ShomyKohai/quest-system](https://github.com/ShomyKohai/quest-system), MIT LICENSE verified, Godot 4.4+ modular quest events/conditions reference for chapter unlock feedback; reuse GH04-044/064 STUDY. Do not install competing quest frameworks.
+- GH04-073 **STUDY** [PieKing1215/godot-loot-tables](https://github.com/PieKing1215/godot-loot-tables), MIT LICENSE verified, Godot 4 WIP Resource pools/weights reference for displaying resource dungeon rewards and price ladder UI; no server economy authority or client-side price debit. Reuse GH04-010/029/055 STUDY.
+- GH04-074 **STUDY** [CodingQuests/godot-multiplayer-starter](https://github.com/CodingQuests/godot-multiplayer-starter), MIT LICENSE verified, Godot 4 authoritative event patterns reference for world boss effective actions; ENet multiplayer starter cannot replace existing Go authoritative server. Reuse GH04-020/062 STUDY.
+- GH04-075 **STUDY** [hatchet-dev/pgoutbox](https://github.com/hatchet-dev/pgoutbox), MIT LICENSE verified, pgx/PostgreSQL transactional outbox for reliable offline seasonal reward notifications, reuse GH04-035/047/054 STUDY; not the grant ledger itself.
+- GH04-076 **ADAPT** [robfig/cron](https://github.com/robfig/cron), MIT LICENSE verified, reuse GH04-026/036/057/066 ADAPT for anchored season settlement wake-up at 06:00 Europe/Moscow; PostgreSQL computes global 28-day season and transactionally closes it; recovery/idempotency custom.
+- GH04-077 **BUILD** own versioned data-driven per-chapter account level requirements and previous-chapter gates, server validation and admin-managed configuration; exact curve TBD. Extends GH04-013/040.
+- GH04-078 **BUILD** own server price ladder per dungeon type/day with three extra purchases, configurable escalating costs, atomic resource debit, idempotency, reset 06:00 MSK, pricing audit. Extends GH04-033/051.
+- GH04-079 **BUILD** own world boss contribution scoring from validated damage, effective healing, buffs and prevented damage, event deduplication, support attribution, anti-collusion/caps, separate eligibility and rank. Extends GH04-034/070.
+- GH04-080 **BUILD** own server automatic seasonal tower reward settlement to inventory/mailbox ledger with unique season+player+reward keys, offline-safe notification and retry/audit. Extends GH04-042/061/068.
+
+## Verification and limits
+Six upstream repositories inspected using connected GitHub README.md and LICENSE, six MIT. Godot 4.7.2 Android compatibility and end-to-end performance not tested; no art/third-party assets licensed by this research. No project code changes, integration, dependency installation, tests or APK builds. Proposal dispositions require separate owner approval.
