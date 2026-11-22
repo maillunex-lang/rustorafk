@@ -217,3 +217,10 @@ Owner explicitly approved these planning dispositions after round-7 GitHub resea
 - GH04-060 BUILD: own seasonal tower rank comparator (highest floor, remaining team HP, achievement time), validation and snapshot; HP metric deferred.
 - GH04-061 BUILD: own 28-day season rollover at 06:00 MSK with settlement, idempotency and outage recovery; permanent tower untouched.
 - Research record: docs/research/GDD-04_ROUND-7_GITHUB_CANDIDATES.md. This approval does not authorize integration, implementation, installs, testing or builds. Next: GDD-04 round 8 design choices.
+
+## GDD-04 - ROUND 8 APPROVED (2026-11-22)
+- TOWER-HP-001 B: seasonal tower ranking HP tie-break is remaining total party HP as a percentage of the party's total maximum HP, after highest cleared floor; achievement time remains the next tie-break. Precise rounding, snapshot and dead-hero treatment deferred.
+- SEASON-ANCHOR-001 B: shared global tower seasons anchored to Monday 06:00 Europe/Moscow, every four weeks (28 days), not per-player. First anchor Monday/date deferred; permanent tower unaffected.
+- SWEEP-ACCESS-001 B: sweeps unlock after the first victory ONLY on repeatable PvE stages; non-repeatable/story-only rewards and other modes are excluded unless later explicitly approved. Existing mode-specific attempts/energy consumption and equal eligible reward chances remain.
+- BOSS-ELIGIBILITY-001 C: world boss participation rewards require a validated minimum contribution OR meaningful active participation; exact thresholds, anti-idle criteria and accessibility cases deferred. Ranking/contribution rewards remain separate.
+- Next: GitHub research for each approved mechanic and separate owner approval of GH04 round-8 technical candidates. No implementation, installation, testing, server/game changes or APK builds authorized.
